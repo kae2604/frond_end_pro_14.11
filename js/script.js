@@ -22,7 +22,7 @@ else {
 // For example, when the user clicks “OK”, “Cancel”, or enters invalid data.
 
 
-
+//
 // 'use strict';
 //
 // let priceInput = prompt('Enter a price');
@@ -56,6 +56,6 @@ else {
 //   if(discount < 0 || discount > 100 || isNaN(discount)){
 //     alert('you entered incorrect discount');
 // }
-
+//
 
 
