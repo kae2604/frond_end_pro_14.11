@@ -30,33 +30,19 @@ if (address === null || address === '') {
 }
 
 
-// In this code I compared strings:
-
-
-// let feelToJs = prompt('Do you like Java Script?')?.toLowerCase();
-//
-// if (feelToJs === 'yes') {
-//     feelToJs = 'You like JavaScript!';
-// } else if (feelToJs === 'no') {
-//     feelToJs = 'You do not like JavaScript!';
-// }  else if (feelToJs === undefined || feelToJs === '') {
-//     feelToJs = 'You did not enter your opinion!';
-// } else {
-//     feelToJs = "You entered incorrect data."
-// }
-
-
 let feelToJs = prompt('Do you like Java Script?')?.toLowerCase();
 
 if (feelToJs === undefined || feelToJs === '') {
     feelToJs = 'You did not enter your opinion!';
-} else {
+}  else if (feelToJs !== 'yes' && feelToJs !== 'no'){
+    feelToJs = 'You entered incorrect data!';
+}  else {
     feelToJs = feelToJs === 'yes';
     if (feelToJs) {
         feelToJs = 'You like JavaScript!';
     }
     else {
-        feelToJs = 'You do not like JavaScript or you enter incorrect data!';
+        feelToJs = 'You do not like JavaScript';
     }
 }
 
