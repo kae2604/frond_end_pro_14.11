@@ -12,7 +12,7 @@ const {name : firstPersonName } = people[0];
 
 
 
-let oldest;
+let oldest = null;
 
 if (people[0].age > people[1].age && people[0].age > people[2].age){
     oldest = people[0];
