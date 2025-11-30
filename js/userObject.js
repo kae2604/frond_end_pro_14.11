@@ -1,18 +1,35 @@
 'use strict';
 
 const user = {
-    // name : prompt('Please enter your name'),
-    // age : prompt('Please enter your age'),
-    // email : prompt('Please enter your email'),
-    // isSubscribed : confirm('Are you subscribed?'),
-    balance : prompt('Please enter your balance'),
-    verified : prompt('If you verified please enter "1", if not verified enter "0"'),
+    name : "Alex",
+    age : 42,
+    email : 'abc@ukr.net',
+    isSubscribed : true,
+    balance : "635.67",
+    verified : "1",
 }
 
 let { balance } = user;
 balance = +balance;
-console.log(balance);
 
 let { verified } = user;
 verified = !!(+verified);
-console.log(verified, typeof verified);
+
+let isAccess = null;
+
+if (user.age >= 18 && verified && (user.isSubscribed || balance > 0 )) {
+    isAccess = "Access granted";
+} else if (user.age < 18){
+    isAccess = "Access restricted due to age";
+}
+else {
+    isAccess = "Access denied";
+}
+
+const ageString = user.age == '42';
+const ageNumber = user.age === '42';
+
+console.log(isAccess);
+console.log("user.age == '42' ", ageString);
+console.log("user.age === '42' ", ageNumber);
+
