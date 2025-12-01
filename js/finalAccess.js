@@ -1,7 +1,7 @@
 'use strict';
 
 let userConditions = isAccess === "Access granted";
-let orderConditions = order.isPaid || balance > numberTotal;
+let orderConditions = order.isPaid || balance >= numberTotal;
 let systemConditions = fontSizeNumber > 12 && (systemSettings.language === "en" || systemSettings.language === "uk");
 let BlockConditions = null;
 let finalAccess = null;
