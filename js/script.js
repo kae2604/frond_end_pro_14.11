@@ -2,19 +2,18 @@
 
 const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
 
-const key = generateKey(16, characters){
-
+const generateKey = function (Length, characters){
+    let sum = "";
+    for (let i = 0; i < Length; i++) {
+        let randomSymbol = characters[Math.floor(Math.random() * characters.length)]
+        sum += randomSymbol;
+    }
+    return sum
 }
-
-
-
-
-console.log(characters[Math.floor(Math.random() * characters.length)]);
+const key = generateKey(16, characters);
+console.log(key);
 
 
 
 
 
-
-//
-// console.log(key); // eg599gb60q926j8i
