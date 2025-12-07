@@ -5,7 +5,7 @@ const padString = function(string, length, symbol, condition = true) {
     let errors = [];
 
     if (string === null || typeof string !== 'string' || string.trim() === '') {
-        errors.push("You entered an incorrect string")
+        errors.push("You entered an incorrect string");
     } else{
         if(string.length > length){
             string = string.substring(0, length);
@@ -46,6 +46,6 @@ let inputNumber = +prompt('Enter a number');
 let inputSymbol = prompt('Enter symbol');
 let inputCondition = confirm ('Enter condition');
 
-console.log(padString(inputString,  inputNumber, inputSymbol,inputCondition));
+console.log(padString(inputString, inputNumber, inputSymbol, inputCondition));
 
 
