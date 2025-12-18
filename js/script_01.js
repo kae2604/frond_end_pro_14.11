@@ -6,13 +6,16 @@ const products = [
     { id: 3, name: "Monitor", price: 210, inStock: true },
 ];
 
-const newProducts = (arr, callback ) => {
-
-    for (let i = 0; i < arr.length; i++) {
-
+const newProducts = products.map((element) => {
+    if (element.inStock) {
+        return (`${element.name}: $${element.price}`);
+    } else {
+        return (`${element.name}: $${element.price} (out of stock)`);
     }
-}
+})
+console.log("Script_1");
+console.log(newProducts);
+console.log("---------------------------------------------------------------------------");
 
-const newArray = (arr, (element) => {
-    let name = arr[0].name;
-});
+
+
