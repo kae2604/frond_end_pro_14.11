@@ -1,0 +1,44 @@
+h1{
+    margin-left: 25px;
+}
+
+.container{
+    margin-left: 25px;
+}
+
+.input{
+    height: 30px;
+    width: 300px;
+    padding: 0 10px;
+}
+
+.button{
+    height: 35px;
+}
+
+.list{
+    padding-left: 0;
+}
+
+.list_item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    background: lightgray;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.button_Li{
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    color: aliceblue;
+    font-weight: bold;
+    background: red;
+}
+
+.selected{
+    background: lightblue;
+}
