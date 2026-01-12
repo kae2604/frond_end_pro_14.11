@@ -1,0 +1,88 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    padding: 50px;
+}
+
+.label{
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 10px;;
+}
+
+.input{
+    width: 300px;
+    height: 40px;
+    padding: 0 10px;
+    outline: none;
+}
+
+.checkbox{
+    margin-left: 40px;
+    width: 20px;
+    height: 20px;
+}
+
+.agree{
+    margin-left: 10px;
+}
+
+.notAgree{
+    margin-left: 10px;
+    color: red;
+}
+
+.forEmail, .forPassword, .forConfirmPassword, .forAge, .forCities{
+    margin-bottom: 20px;
+}
+
+.forAgree{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.submit, .clear{
+    width: 100px;
+    height: 50px;
+}
+
+.clear{
+    margin-left: 40px;
+}
+
+.errorInput{
+    border: 3px solid red;
+}
+
+.errorTextUnderInput{
+    color: red;
+    font-size: 20px;
+    white-space: pre-line;
+}
+
+.showPassword{
+    margin-left: 0;
+    height: 40px;
+}
+
+.checkPasswordGood{
+    color: green;
+    font-size: 20px;
+}
+
+.checkPasswordBad{
+    color: gray;
+    font-size: 20px;
+}
+
+.form{
+    margin-bottom: 50px;
+    font-size: 24px;
+}
+
+.passwordRequired{
+    font-size: 14px;
+}
+

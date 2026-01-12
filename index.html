@@ -14,7 +14,57 @@
 
 <body>
 
-<h1> This is my homework # </h1>
+<h1> This is my homework #26 </h1>
+
+<form name="myForm" method="post" action="" class="form" data-form>
+
+    <div class="forEmail" data-forEmail>
+        <label for="email" class="label">Email:</label>
+        <input type="email" name="email" id="email"  required placeholder="Please enter your email" class="input" data-email>
+    </div>
+
+    <div class="forPassword" data-forPassword>
+        <label for="password" class="label">Password: <br>
+            <span class="passwordRequired"> Required: Min: 8 symbols, 1 letters, 1 number </span> <br>
+            <span class="passwordRequired"> Recommended: Min: 1 special symbols, 2 Capital letters, 4 numbers </span>
+
+        </label>
+        <input type="password" name="password" id="password" placeholder="Please enter your Password" class="input" data-password>
+        <button type="button" class="showPassword" data-showPassword>Show password</button>
+    </div>
+
+    <div class="forConfirmPassword" data-forConfirmPassword>
+        <label for="confirmPassword" class="label">Confirm password:</label>
+        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Please confirm your Password" class="input" data-confirmPassword>
+        <button type="button" class="showPassword" data-showConfirmPassword>Show password</button>
+    </div>
+
+    <div class="forAge" data-forAge>
+        <label for="age" class="label">Age:</label>
+        <input type="number" name="age" id="age" placeholder="Please enter your age" class="input" data-age>
+    </div>
+
+    <div class="forCities" data-forСities>
+        <label for="cities" class="label">Сities:</label>
+        <select name="cities" id="cities" class="input" data-city>
+            <option value="" disabled selected> Choose a city ...</option>
+            <option value="Kyiv" >Kyiv</option>
+            <option value="Odessa" >Odessa</option>
+            <option value="Kharkov" >Kharkov</option>
+            <option value="Dnipro" >Dnipro</option>
+            <option value="Lviv">Lviv</option>
+        </select>
+    </div>
+
+    <div class="forAgree">
+        <label for="agree" class="agree">I agree with all conditions
+            <input type="checkbox" name="agree" id="agree" class="checkbox" data-agree>
+        </label>
+    </div>
+
+    <button type="submit" class="submit" data-submit>Sign up</button>
+    <button type="button" class="clear" data-clear>Clear</button>
+</form>
 
 
 <script src="./js/script.js"></script>
