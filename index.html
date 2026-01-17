@@ -65,7 +65,7 @@
             <small>Just now!</small>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-        <div class="toast-body">
+        <div class="toast-body" data-toast-add-body>
             Contact successfully added!
         </div>
     </div>
@@ -88,6 +88,19 @@
                 <button type="submit" class="btn btn-primary remove-confirm" data-Remove-Confirm>Remove</button>
                 <button type="button" class="btn btn-secondary remove-cancel" data-Remove-Cancel data-bs-dismiss="modal">Cancel</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3 ">
+    <div id="contactRemoved" class="toast text-bg-primary" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Contact Removed!</strong>
+            <small>Just now!</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" data-toast-remove-body>
+            Contact successfully removed!
         </div>
     </div>
 </div>
