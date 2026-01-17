@@ -1,0 +1,35 @@
+*{
+    box-sizing: border-box;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*border: 1px solid black;*/
+    /*border-radius: 5px;*/
+    /*padding: 10px;*/
+}
+
+.btnRemove-list-group-item {
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: lightgray;
+    color: red;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.modal-footer-confirm-remove{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.remove-cancel{
+    background-color: #198754;
+}
+
+.remove-confirm{
+    background-color: #dc3545;
+}
