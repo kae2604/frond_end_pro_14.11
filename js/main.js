@@ -2,6 +2,7 @@
 
 import "./modules/GeneralVariables.js";
 import "./modules/UI_module.js";
+import "./modules/createModals.js";
 import "./modules/addContactModal.js";
 import "./modules/contactsManagement.js";
 import "./modules/confirmRemoveModal.js";

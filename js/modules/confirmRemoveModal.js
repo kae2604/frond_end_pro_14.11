@@ -1,4 +1,5 @@
-import {contactsList, globalVariables, addRemoveContactModal} from "./GeneralVariables.js"
+import {contactsList, globalVariables, } from "./GeneralVariables.js";
+import {addRemoveContactModal} from "./RemoveContactModal.js";
 
 contactsList.addEventListener('click', (event) => {
     const btnRemove = event.target.closest('.btnRemove-list-group-item');

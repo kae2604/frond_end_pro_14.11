@@ -11,8 +11,3 @@ export const listHandler = uiContactsListHandler();
 import contactsManagement from "./contactsManagement.js"
 export const contactService = contactsManagement();
 
-const addRemoveContactModalSelector = '#addRemoveContactModal';
-export const addRemoveContactModal = new bootstrap.Modal(addRemoveContactModalSelector, {
-    keyboard: true,
-    backdrop: true
-});

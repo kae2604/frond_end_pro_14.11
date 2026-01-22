@@ -1,6 +1,9 @@
-import {globalVariables, addRemoveContactModal, listHandler, contactService} from "./GeneralVariables.js"
+import {globalVariables, listHandler, contactService} from "./GeneralVariables.js"
+import {createModalsRemoveContact, createToastContact} from "./createModals.js";
 
-const toastRemoved = new bootstrap.Toast(document.querySelector('#contactRemoved'));
+export const addRemoveContactModal = createModalsRemoveContact('addRemoveContactModal');
+
+const toastRemoved = createToastContact('contactRemoved', 'data-toast-remove-body', 'Removed');
 
 document.querySelector('#addRemoveContactModal')
     .addEventListener('click', (event) => {

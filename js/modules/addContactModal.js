@@ -1,4 +1,6 @@
-import {listHandler, contactService} from "./GeneralVariables.js"
+import {listHandler, contactService} from "./GeneralVariables.js";
+import {createModalsAddContact} from "./createModals.js";
+import {createToastContact} from "./createModals.js";
 
 const validationRegExps = {
     'fullName': /^(?=.{2,80}$)[\p{L}]+(?:[ '\-][\p{L}]+){0,3}$/u,
@@ -12,18 +14,12 @@ const errorMessages = {
     'address': 'Address Required',
 };
 
-const addContactModalSelector = '#addContactModal';
-const addContactModal = new bootstrap.Modal(addContactModalSelector, {
-    keyboard: true,
-    backdrop: true
-});
+const addContactModal = createModalsAddContact( 'addContactModal');
 const addContactModalTrigger = document.querySelector('[data-add-contact-modal-btn]');
-
-const toastAdded = new bootstrap.Toast(document.querySelector('#contactAdded'));
-
+const toastAdded = createToastContact('contactRemoved', 'data-toast-add-body', 'Added');
 
 addContactModalTrigger.addEventListener('click', () => {
-    addContactModal.show()
+    addContactModal.show();
 });
 
 addContactModal._element.querySelector(`form#add-contact-form`)
@@ -40,7 +36,7 @@ addContactModal._element.querySelector(`form#add-contact-form`)
                 const errBlock = document.createElement('div');
                 errBlock.innerHTML = errorMessages[name];
                 errBlock.classList.add('text-danger', 'error-validation');
-                wrapper.append(errBlock)
+                wrapper.append(errBlock);
                 formValidated = false;
             }
             return acc;
