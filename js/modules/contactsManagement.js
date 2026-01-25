@@ -1,31 +1,36 @@
 const contactsManagement = () => {
-    const contacts = [];
+    // const contacts = [];
+
+
+
+    const getContacts = () => {
+        // return structuredClone(contacts);
+        return JSON.parse(localStorage.getItem('contact')) ?? [];
+    };
 
     const addContact = (data) => {
         const idForRemove = crypto.randomUUID();
         const contact = {idForRemove, ...data};
-        contacts.push(contact);
+        const arrayFromLocalStorage = getContacts();
+        arrayFromLocalStorage.push(contact);
+        localStorage.setItem('contact', JSON.stringify(arrayFromLocalStorage));
     };
 
-    const getContacts = () => {
-        return structuredClone(contacts);
-    };
-
-    const removeContact = (id) => {
-        const IndexRemoveContact = contacts.findIndex(contact => {
-            return contact.idForRemove === id;
-        });
-        if (IndexRemoveContact === -1) {
-            return false;
-        }   else {
-            contacts.splice(IndexRemoveContact, 1);
-            return true;
-        }
-    };
+    // const removeContact = (id) => {
+    //     const IndexRemoveContact = contacts.findIndex(contact => {
+    //         return contact.idForRemove === id;
+    //     });
+    //     if (IndexRemoveContact === -1) {
+    //         return false;
+    //     }   else {
+    //         contacts.splice(IndexRemoveContact, 1);
+    //         return true;
+    //     }
+    // };
     return {
         getContacts,
         addContact,
-        removeContact
+        // removeContact
     }
 };
 export default contactsManagement;
