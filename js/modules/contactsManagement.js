@@ -1,36 +1,37 @@
+import {addContactToLocalStorage, contactService} from "./GeneralVariables.js";
+
 const contactsManagement = () => {
-    // const contacts = [];
-
-
 
     const getContacts = () => {
-        // return structuredClone(contacts);
         return JSON.parse(localStorage.getItem('contact')) ?? [];
     };
 
+    let arrayFromLocalStorage = getContacts();
+
     const addContact = (data) => {
-        const idForRemove = crypto.randomUUID();
+        // const idForRemove = crypto.randomUUID();
+        const idForRemove = arrayFromLocalStorage.length ? arrayFromLocalStorage.at(-1).idForRemove + 1 : 1;
         const contact = {idForRemove, ...data};
-        const arrayFromLocalStorage = getContacts();
         arrayFromLocalStorage.push(contact);
-        localStorage.setItem('contact', JSON.stringify(arrayFromLocalStorage));
+        addContactToLocalStorage('contact', arrayFromLocalStorage)
     };
 
-    // const removeContact = (id) => {
-    //     const IndexRemoveContact = contacts.findIndex(contact => {
-    //         return contact.idForRemove === id;
-    //     });
-    //     if (IndexRemoveContact === -1) {
-    //         return false;
-    //     }   else {
-    //         contacts.splice(IndexRemoveContact, 1);
-    //         return true;
-    //     }
-    // };
+    const removeContact = (id) => {
+        const IndexRemoveContact = arrayFromLocalStorage.findIndex(contact => {
+            return contact.idForRemove === id;
+        });
+        if (IndexRemoveContact === -1) {
+            return false;
+        }   else {
+            arrayFromLocalStorage.splice(IndexRemoveContact, 1);
+            addContactToLocalStorage('contact', arrayFromLocalStorage)
+            return true;
+        }
+    };
     return {
         getContacts,
         addContact,
-        // removeContact
+        removeContact
     }
 };
 export default contactsManagement;

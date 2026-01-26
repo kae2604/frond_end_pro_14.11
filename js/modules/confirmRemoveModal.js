@@ -7,7 +7,7 @@ contactsList.addEventListener('click', (event) => {
         return;
     }
     const liForRemove = btnRemove.closest('li');
-    const idForRemove = liForRemove.dataset.idForRemove;
+    const idForRemove = +liForRemove.dataset.idForRemove;
     const spanForRemove = liForRemove.querySelector('span.span-list-group-item');
     const fullNameForRemove = spanForRemove.textContent.trim().split(' |')[0];
     const confirmRemoveContactTitle = addRemoveContactModal._element.querySelector('#staticBackdropLabelDeleteContact');

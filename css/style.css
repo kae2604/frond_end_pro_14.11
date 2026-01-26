@@ -6,18 +6,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*border: 1px solid black;*/
-    /*border-radius: 5px;*/
-    /*padding: 10px;*/
+
 }
 
 .btnRemove-list-group-item {
     padding: 5px 10px;
-    font-size: 14px;
-    background-color: lightgray;
     color: red;
     font-weight: bold;
     border-radius: 5px;
+    border: 0.1px solid #000;
 }
 
 .modal-footer-confirm-remove{
@@ -32,4 +29,8 @@
 
 .remove-confirm{
     background-color: #dc3545;
+}
+
+.span-list-group-item{
+    font-size: 20px;
 }

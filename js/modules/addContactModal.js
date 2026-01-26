@@ -55,3 +55,5 @@ addContactModal._element.querySelector(`form#add-contact-form`)
         evt.target.reset();
         document.querySelectorAll('.error-validation').forEach(item => item.remove());
     });
+
+

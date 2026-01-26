@@ -1,4 +1,4 @@
-import { contactsAlert, contactsList } from "./GeneralVariables.js"
+import {contactsAlert, contactService, contactsList, listHandler} from "./GeneralVariables.js"
 
 const uiContactsListHandler = () => {
 
@@ -11,7 +11,7 @@ const uiContactsListHandler = () => {
         span.textContent = `${fullName} | ${phone} | ${address}`;
         const btnRemoveContact = document.createElement('button');
         btnRemoveContact.classList.add('btnRemove-list-group-item');
-        btnRemoveContact.textContent = 'X';
+        btnRemoveContact.innerHTML = '<i class="bi bi-trash3 fs-4"></i>';
         li.append(span, btnRemoveContact);
         return li;
     };
@@ -38,3 +38,10 @@ const uiContactsListHandler = () => {
     };
 };
 export default uiContactsListHandler;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const contactsFromLocalStorage = contactService.getContacts()
+    contactsFromLocalStorage.forEach((contact) => {
+        listHandler.addElement(contact);
+    })
+})

@@ -8,5 +8,4 @@ import "./modules/contactsManagement.js";
 import "./modules/confirmRemoveModal.js";
 import "./modules/RemoveContactModal.js";
 
-console.log("Hello World!");
-localStorage.setItem('contact', "Hello World!");
+

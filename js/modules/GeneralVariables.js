@@ -11,3 +11,6 @@ export const listHandler = uiContactsListHandler();
 import contactsManagement from "./contactsManagement.js"
 export const contactService = contactsManagement();
 
+export const addContactToLocalStorage = (key, contact) => {
+    localStorage.setItem(key, JSON.stringify(contact));
+}
