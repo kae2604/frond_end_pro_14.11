@@ -1,0 +1,15 @@
+Index: Readme.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>### Homework #1
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Readme.md b/Readme.md
+--- a/Readme.md	(revision f1e73ba2bd10f6610229fe4ee86df1d865453dbc)
++++ b/Readme.md	(date 1769074882057)
+@@ -1,1 +1,1 @@
+-### Homework #1
+\ No newline at end of file
++### Homework #
+\ No newline at end of file
