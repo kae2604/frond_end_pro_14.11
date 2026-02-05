@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a3c469-e165-4d24-9781-64f44dd9d649" name="Changes" comment="add hw30">
-      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+    <list default="true" id="c8a3c469-e165-4d24-9781-64f44dd9d649" name="Changes" comment="add hw31">
+      <change afterPath="$PROJECT_DIR$/js/modules/constructor_Student.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/modules/example_Student_1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/modules/example_Student_2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/modules/example_Student_3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/modules/getRandomArray.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +43,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="hw28" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -138,15 +143,7 @@
       <workItem from="1769075186913" duration="382000" />
       <workItem from="1769075597660" duration="297000" />
       <workItem from="1769075941476" duration="36005000" />
-      <workItem from="1769363551805" duration="59742000" />
-    </task>
-    <task id="LOCAL-00026" summary="Add hw 7">
-      <option name="closed" value="true" />
-      <created>1764190895699</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1764190895699</updated>
+      <workItem from="1769363551805" duration="70079000" />
     </task>
     <task id="LOCAL-00027" summary="Add hw 8">
       <option name="closed" value="true" />
@@ -532,7 +529,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770061026142</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="add hw31">
+      <option name="closed" value="true" />
+      <created>1770281249193</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1770281249193</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -550,7 +555,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change hw11" />
     <MESSAGE value="change hw13" />
     <MESSAGE value="change hw12" />
     <MESSAGE value="add hw14" />
@@ -575,6 +579,7 @@
     <MESSAGE value="add some" />
     <MESSAGE value="add some hw" />
     <MESSAGE value="add hw30" />
-    <option name="LAST_COMMIT_MESSAGE" value="add hw30" />
+    <MESSAGE value="add hw31" />
+    <option name="LAST_COMMIT_MESSAGE" value="add hw31" />
   </component>
 </project>
