@@ -1,0 +1,126 @@
+*{
+    box-sizing: border-box;
+}
+
+h1{
+    text-align: center;
+    font-size: 50px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 25px;
+}
+
+.leftBox{
+    max-width: 500px;
+    width: 100%;
+
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+    align-self: flex-start;
+}
+
+.middleBox{
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid black;
+    height: auto;
+    align-self: flex-start;
+}
+
+.rightBox{
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid black;
+    height: auto;
+    align-self: flex-start;
+}
+
+h2, h4{
+    border-bottom: 1px solid black;
+    /*margin: 0 0 25px;*/
+    padding: 15px;
+    background-color: lightgray;
+    text-align: center;
+    font-size: 24px;
+}
+
+.mistakesBox{
+    border-top: 1px solid black;
+}
+
+form{
+    padding: 35px;
+}
+
+form input{
+    display: block;
+    margin-bottom: 25px;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+button{
+
+}
+
+.buttonsBox{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
+}
+
+.buttonSave{
+    background-color: chartreuse;
+    max-width: 150px;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+}
+
+.buttonFreeze{
+    background-color: lightblue;
+    max-width: 150px;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+}
+
+.buttonJson{
+    display: block;
+    width: 90%;
+    margin: 25px auto;
+    border: 1px solid black;
+    background-color: yellow;
+    height: 50px;
+}
+
+.fullName, .email, .datetime{
+    font-weight: bold;
+    font-size: 24px;
+    padding: 45px;
+    margin: 0;
+}
+
+.mistake{
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    color: red;
+    margin: 25px 0 15px;
+}
+
+.invalidInput{
+    border-color: red;
+}
+
+
+

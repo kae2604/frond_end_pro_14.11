@@ -8,16 +8,50 @@
 
     <title>HOMEWORK</title>
 
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-<h1> This is my homework # </h1>
+<h1> This is my homework #32 </h1>
+<hr>
+
+<div class="container">
+    <div class="leftBox">
+            <div class="formBox">
+                <h2>FORM</h2>
+                <form name="form" method="post" action="" data-form novalidate>
+                    <input type="text" name="firstName" placeholder="Enter your first name"  data-first-name data-input>
+                    <input type="text" name="lastName" placeholder="Enter your last name"  data-last-name data-input>
+                    <input type="email" name="email" placeholder="Enter your email"  data-email data-input>
+                    <div class="buttonsBox">
+                        <button class="buttonFreeze" type="button" data-freeze >Freeze model</button>
+                        <button class="buttonSave" type="submit" data-save >Save</button>
+                    </div>
+                </form>
+            </div>
+            <div class="mistakesBox" >
+                <h4>MISTAKES</h4>
+                <div data-mistakes-box></div>
+            </div>
+    </div>
 
 
-<script src="./js/script.js"></script>
+    <div class="middleBox">
+        <h2>MODEL PREVIEW</h2>
+        <div data-model-box> </div>
+    </div>
+
+    <div class="jsonBox rightBox" data-json-box>
+        <h4>JSON</h4>
+        <button class="buttonJson" type="button" data-json >Push here to get a json of descriptors</button>
+    </div>
+</div>
+
+
+<script src="js/main.js" type="module"></script>
 
 </body>
 
