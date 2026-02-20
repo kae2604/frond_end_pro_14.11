@@ -1,0 +1,86 @@
+*{
+    box-sizing: border-box;
+}
+
+.myContainer{
+    margin: 0 50px;
+}
+
+form{
+    max-width: 300px;
+    width: 100%;
+}
+
+.right-block{
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-left: 25px;
+    width: 100%;
+}
+
+.btn-filter{
+    width: 100px;
+    height: 40px;
+}
+
+.btn-remove-all{
+    font-size: 12px;
+}
+
+
+.notesList{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    margin-left: 50px;
+}
+
+.notes-filter{
+    gap: 20px;
+}
+
+.newNote{
+    display: inline-block;
+    width: 250px;
+    background-color: lightgray;
+    border-radius: 25px;
+    margin: 25px;
+    padding: 25px;
+}
+
+.note-title{
+    font-size: 25px;
+}
+
+.highlightImportant{
+    background-color: #ffc107;
+}
+
+.empty-text{
+    display: block;
+    text-align: center;
+    margin: 50px auto;
+}
+
+.increaseButton{
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2px red;
+}
+
+.count-box{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid green;
+    margin: 15px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.count-figure{
+    font-size: 24px;
+}
+
+

@@ -8,16 +8,103 @@
 
     <title>HOMEWORK</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-<h1> This is my homework # </h1>
+    <h1 class="text-center" > This is my homework #34 </h1>
+    <hr class="mb-5">
+
+    <div class="myContainer d-flex justify-content-between">
+        <form class="form " data-form-notes>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Title</label>
+                <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your note here" >
+            </div>
+
+            <div>
+                <label for="select" class="form-label">Category</label>
+                <select class="form-select form-select-lg mb-3" aria-label="Large select example" id="select" name="category">
+                    <option value="" selected> Choose the category</option>
+                    <option value="Work">Work</option>
+                    <option value="Study">Study</option>
+                    <option value="Personal">Personal</option>
+                </select>
+            </div>
+
+            <div  class="d-flex justify-content-between align-items-center mx-3">
+                <div class=" form-check">
+                    <input type="checkbox" name="important" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Important</label>
+                </div>
+
+                <button type="submit" class="btn btn-success">Create note</button>
+
+            </div>
+        </form>
+
+        <div class="right-block">
+            <div class=" d-flex justify-content-between  notes-filter p-3" data-filters-block>
+                <div>
+                    <button type="button" class="btn btn-filter btn-success" data-btn-all>All</button>
+                    <div class="count-box"  data-count-total-box></div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-filter btn-warning" data-btn-important>Important</button>
+                    <div class="count-box"  data-count-important-box></div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-filter btn-secondary" data-btn-work>Work</button>
+                    <div class="count-box"  data-count-Work-box></div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-filter bg-dark-subtle" data-btn-study>Study</button>
+                    <div class="count-box"  data-count-Study-box></div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-filter btn-info" data-btn-personal>Personal</button>
+                    <div class="count-box"  data-count-Personal-box></div>
+                </div>
+
+                <button type="button" class="btn btn-filter btn-primary" data-btn-new-first>New first</button>
+                <button type="button" class="btn btn-filter btn-primary" data-btn-old-first>Old first</button>
 
 
-<script src="./js/script.js"></script>
+
+                <button type="button" class="btn btn-remove-all btn-danger" data-btn-remove-all>
+                    <i class="bi bi-trash-fill"></i>
+                    <span>Remove All Tasks</span>
+                </button>
+            </div>
+
+            <div class="notesList" id="notesList">
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="js/app.js" type="module"></script>
 
 </body>
 
