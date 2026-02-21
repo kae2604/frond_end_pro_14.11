@@ -3,7 +3,8 @@ class View {
     form = document.querySelector('[data-form-notes]');
     clearAllButton = document.querySelector('[data-btn-remove-all]');
     filtersBlock = document.querySelector('[data-filters-block]');
-
+    termsBlock = document.querySelector('[data-term-block]');
+    editModal = document.querySelector('[data-edit-modal]');
 
     createNewNote(object) {
         const removeEmptyText = this.containerForNotes.querySelector('.empty-text');
@@ -14,7 +15,7 @@ class View {
         newNote.classList.add('newNote');
         newNote.dataset.noteId = object.id;
         newNote.innerHTML = ` 
-                        <p class="note-title">${object.title}</p>
+                        <p class="note-title" data-title-text>${object.title}</p>
                         <hr>
                         <p>${object.category}</p>
                         <hr>
@@ -36,7 +37,7 @@ class View {
             newNote.classList.add('highlightImportant');
         }
         return newNote;
-    }
+    };
 
     createCount(object) {
         for (const key in object) {
@@ -45,7 +46,7 @@ class View {
                 countBox.textContent = object[key];
             }
         }
-    }
+    };
 
     EmptyBox(text = 'No notes yet'){
         const isEmptyText= this.containerForNotes.querySelector('.empty-text');
@@ -59,7 +60,7 @@ class View {
         if (!isNote) {
             this.containerForNotes.prepend(emptyText);
         }
-    }
+    };
 
     createAllNotes(array) {
         const clone = document.createElement('div');
@@ -69,8 +70,7 @@ class View {
         });
         this.clearAll();
         this.containerForNotes.append(clone);
-    }
-
+    };
 
     addNewNote(object) {
         const newNote = this.createNewNote(object);
@@ -78,29 +78,36 @@ class View {
             newNote.classList.add('highlightImportant');
         }
         this.containerForNotes.prepend(newNote)
-    }
+    };
 
     clearAll() {
         this.containerForNotes.innerHTML = null;
-    }
-
-    deleteSingleNote(id) {
-        this.containerForNotes.querySelector(`[data-note-id='${id}']`).remove();
-    }
+    };
 
     toggleImportant(id) {
         const findNote = this.containerForNotes.querySelector(`[data-note-id='${id}']`);
         findNote.classList.toggle('highlightImportant');
-    }
+    };
 
-    increaseButton(selector) {
-        this.filtersBlock.querySelectorAll('.increaseButton').forEach(el => el.classList.remove('increaseButton'));
-        this.filtersBlock.querySelector(selector).classList.add('increaseButton');
-    }
+    increaseButton(block, selector) {
+        this[block].querySelectorAll('.increaseButton').forEach(el => el.classList.remove('increaseButton'));
+        this[block].querySelector(selector).classList.add('increaseButton');
+    };
 
+    showEditModal(){
+        const showEditModal = document.querySelector('[data-edit-modal]');
+        showEditModal.classList.add('showEditModal');
+    };
 
+    editNote(id, value) {
+        const noteToEdit = this.containerForNotes.querySelector(`[data-note-id='${id}']`);
+        const titleText = noteToEdit.querySelector('[data-title-text]');
+        titleText.textContent = value;
+    };
 
-
-
+    hideNote(){
+        const showEditModal = document.querySelector('[data-edit-modal]');
+        showEditModal.classList.remove('showEditModal');
+    };
 }
 export default View;

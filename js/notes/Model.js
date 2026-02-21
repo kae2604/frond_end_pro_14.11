@@ -5,7 +5,7 @@ class Model {
     constructor(key, modelNote) {
         this.#key = key;
         this.#modelNote = modelNote;
-    }
+    };
 
     #validationData(object) {
             if (object.title.trim().length < 3) {
@@ -54,20 +54,20 @@ class Model {
 
     clearAll(){
         localStorage.setItem(this.#key, JSON.stringify([]));
-    }
+    };
 
     delete(id){
         const allDataFromLocalStorage = this.readAll();
         const IndexToRemove = allDataFromLocalStorage.findIndex(note => note.id === id);
         allDataFromLocalStorage.splice(IndexToRemove, 1);
         this.#updateLocalStorage(allDataFromLocalStorage);
-    }
+    };
 
     filter(property, condition){
         const allDataFromLocalStorage = this.readAll();
         const filteredArray = allDataFromLocalStorage.filter(note => note[property] === condition);
         return filteredArray;
-    }
+    };
 
     toggleImportant(id){
         const allDataFromLocalStorage = this.readAll();
@@ -75,13 +75,7 @@ class Model {
         if (!findNote) return ;
         findNote.important = !findNote.important;
         this.#updateLocalStorage(allDataFromLocalStorage);
-    }
-
-    reverse(){
-        const allDataFromLocalStorage = this.readAll();
-        const filteredArray = allDataFromLocalStorage.reverse();
-        return filteredArray;
-    }
+    };
 
     count(){
         const allDataFromLocalStorage = this.readAll();
@@ -98,8 +92,19 @@ class Model {
             Personal: 0
         });
         return countElements;
-    }
+    };
 
-
+    editNote(id, dataFromInput){
+        if (dataFromInput.trim().length < 3) {
+            alert("Title should be at least 3 characters long");
+            return false;
+        }
+        const allDataFromLocalStorage = this.readAll();
+        const findNote = allDataFromLocalStorage.find(note => note.id === id);
+        if (!findNote) return ;
+        findNote.title = dataFromInput
+        this.#updateLocalStorage(allDataFromLocalStorage);
+        return findNote
+    };
 }
 export default Model;
