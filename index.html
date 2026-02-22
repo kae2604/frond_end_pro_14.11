@@ -23,7 +23,7 @@
         <form class="form my-form" data-form-notes>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Title</label>
-                <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your note here" >
+                <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your note here" data-form-title>
             </div>
 
             <div>
@@ -48,23 +48,23 @@
             <div class="d-flex justify-content-between  notes-filter p-3" >
                 <div class="d-flex justify-content-between  notes-filter p-3" data-filters-block>
                     <div>
-                        <button type="button" class="btn btn-filter btn-success" data-btn-all>All</button>
+                        <button type="button" class="btn btn-filter all-color" data-btn-all>All</button>
                         <div class="count-box"  data-count-total-box></div>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-filter btn-warning" data-btn-important>Important</button>
+                        <button type="button" class="btn btn-filter important-color" data-btn-important>Important</button>
                         <div class="count-box"  data-count-important-box></div>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-filter btn-secondary" data-btn-work>Work</button>
+                        <button type="button" class="btn btn-filter work-color" data-btn-work>Work</button>
                         <div class="count-box"  data-count-Work-box></div>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-filter bg-dark-subtle" data-btn-study>Study</button>
+                        <button type="button" class="btn btn-filter study-color" data-btn-study>Study</button>
                         <div class="count-box"  data-count-Study-box></div>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-filter btn-info" data-btn-personal>Personal</button>
+                        <button type="button" class="btn btn-filter personal-color" data-btn-personal>Personal</button>
                         <div class="count-box"  data-count-Personal-box></div>
                     </div>
 
@@ -89,33 +89,15 @@
         </div>
     </div>
 
-
     <form action="#" class="editModal" data-edit-modal >
         <div class="mb-4">
-            <input type="text" name="edit" class="form-control form-edit"  aria-describedby="emailHelp" placeholder="Enter your changes here" >
+            <input type="text" name="edit" class="form-control form-edit"  aria-describedby="emailHelp" placeholder="Enter your changes here" data-input-edit>
         </div>
         <div class="d-flex justify-content-between mx-3">
             <button type="button" class="btn btn-danger w-25" data-btn-close-modal >Close modal</button>
             <button type="submit" class="btn btn-success w-25" data-btn-edit-note >Edit note</button>
         </div>
     </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

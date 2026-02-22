@@ -32,18 +32,18 @@ class Controller {
             this.#view.termsBlock.addEventListener('click', this.#filterOldFirst);
             this.#view.editModal.addEventListener('submit', this.#editNote);
             this.#view.editModal.addEventListener('click', this.#hideNote);
-        })
+        });
     };
 
     #updatePage(array){
         if (array.length === 0){
             this.#view.clearAll();
-            this.#view.EmptyBox()
+            this.#view.EmptyBox();
         } else{
-            this.#view.createAllNotes(array)
+            this.#view.createAllNotes(array);
         }
         const countObject = this.#model.count();
-        this.#view.createCount(countObject)
+        this.#view.createCount(countObject);
     };
 
     #createNewNote = (event) => {
@@ -59,14 +59,18 @@ class Controller {
         if (objectFromModel !== null) {
             this.#view.addNewNote(objectFromModel);
             this.#view.increaseButton('filtersBlock','[data-btn-all]');
-            const dataFromLocalStorage = this.#model.readAll();
-            if (this.#newFirst){
-                this.#updatePage(dataFromLocalStorage);
-            }else {
-                this.#updatePage(dataFromLocalStorage.reverse())
-            }
+            this.#renderCurrentFilters();
             this.#currentFilter = null;
+            this.#view.clearInputs();
         }
+    };
+
+    #clearAll = () => {
+        this.#model.clearAll();
+        this.#view.clearAll();
+        this.#view.EmptyBox();
+        const dataFromLocalStorage = this.#model.readAll();
+        this.#updatePage(dataFromLocalStorage);
     };
 
     #clearNote = (event) => {
@@ -74,51 +78,14 @@ class Controller {
         if (!target) return;
         const idToDelete = +target.closest('[data-note-id]').getAttribute('data-note-id');
         this.#model.delete(idToDelete);
-        if (this.#currentFilter){
-            const filteredArray = this.#model.filter(this.#currentFilter.property, this.#currentFilter.condition);
-            if (this.#newFirst){
-                this.#updatePage(filteredArray);
-            }else {
-                this.#updatePage(filteredArray.reverse())
-            }
-        } else {
-            const dataFromLocalStorage = this.#model.readAll();
-            if (this.#newFirst){
-                this.#updatePage(dataFromLocalStorage);
-            }else {
-                this.#updatePage(dataFromLocalStorage.reverse())
-            }
-        }
+        this.#renderCurrentFilters();
      };
-
-    #clearAll = () => {
-        this.#model.clearAll();
-        this.#view.clearAll();
-        this.#view.EmptyBox();
-        const dataFromLocalStorage = this.#model.readAll();
-        this.#updatePage(dataFromLocalStorage)
-    };
 
     #changeImportantNote = (event) => {
         const target = event.target;
         const idImportant = +target.closest('[data-note-id]').getAttribute('data-note-id');
         this.#model.toggleImportant(idImportant);
-        this.#view.toggleImportant(idImportant);
-        if (this.#currentFilter){
-            const filteredArray = this.#model.filter(this.#currentFilter.property, this.#currentFilter.condition);
-            if (this.#newFirst){
-                this.#updatePage(filteredArray);
-            }else {
-                this.#updatePage(filteredArray.reverse())
-            }
-        } else {
-            const dataFromLocalStorage = this.#model.readAll();
-            if (this.#newFirst){
-                this.#updatePage(dataFromLocalStorage);
-            }else {
-                this.#updatePage(dataFromLocalStorage.reverse())
-            }
-        }
+        this.#renderCurrentFilters();
     };
 
     #filter = (selector, property, condition) => {
@@ -128,14 +95,14 @@ class Controller {
             this.#currentFilter = {property,condition};
             const filteredArray = this.#model.filter(property, condition);
             this.#view.clearAll();
-            this.#view.increaseButton('filtersBlock', selector)
+            this.#view.increaseButton('filtersBlock', selector);
             if ( filteredArray.length === 0 ) {
-                this.#view.EmptyBox('No notes of this type')
+                this.#view.EmptyBox('No notes of this type');
             } else{
                 if (this.#newFirst){
                     this.#updatePage(filteredArray);
                 }else {
-                    this.#updatePage(filteredArray.reverse())
+                    this.#updatePage(filteredArray.reverse());
                 }
             }
         }
@@ -149,7 +116,7 @@ class Controller {
         if (this.#newFirst){
             this.#updatePage(dataFromLocalStorage);
         }else {
-            this.#updatePage(dataFromLocalStorage.reverse())
+            this.#updatePage(dataFromLocalStorage.reverse());
         }
         this.#currentFilter = null;
     };
@@ -157,53 +124,57 @@ class Controller {
     #filterNewFirst = (event) => {
         const target = event.target.closest('[data-btn-new]');
         if (!target) return;
-        if (!this.#newFirst) this.#newFirst = true;
+        this.#newFirst = true;
         this.#view.increaseButton('termsBlock','[data-btn-new]');
-        if (this.#currentFilter){
-            const filteredArray = this.#model.filter(this.#currentFilter.property, this.#currentFilter.condition);
-            this.#updatePage(filteredArray);
-        } else {
-            const dataFromLocalStorage = this.#model.readAll();
-            this.#updatePage(dataFromLocalStorage)
-        }
+        this.#renderCurrentFilters();
     };
 
     #filterOldFirst = (event) => {
         const target = event.target.closest('[data-btn-old]');
         if (!target) return;
-        this.#view.increaseButton('termsBlock','[data-btn-old]');
-        if (this.#currentFilter){
-            const filteredArray = this.#model.filter(this.#currentFilter.property, this.#currentFilter.condition);
-            this.#updatePage(filteredArray.reverse());
-        } else {
-            const dataFromLocalStorage = this.#model.readAll();
-            this.#updatePage(dataFromLocalStorage.reverse())
-        }
         this.#newFirst = false;
+        this.#view.increaseButton('termsBlock','[data-btn-old]');
+        this.#renderCurrentFilters();
     };
 
     #showEditModal = (event) => {
         const target = event.target.closest('[data-edit-btn]');
         if (!target) return;
-        this.#idToEdit = +target.closest('[data-note-id]').getAttribute('data-note-id');
-        this.#view.showEditModal()
+        const noteToEdit = target.closest('[data-note-id]');
+        this.#idToEdit = +noteToEdit.getAttribute('data-note-id');
+        const titleToEdit = noteToEdit.querySelector('[data-title-text]').textContent;
+        this.#view.setEditModalValue(titleToEdit);
+        this.#view.toggleEditModal();
     };
 
     #editNote = (event) => {
         event.preventDefault();
         const dataFromInput = event.target.querySelector('input[name="edit"]');
         const value = dataFromInput.value;
-        this.#model.editNote(this.#idToEdit, value);
+        const dataFromModel = this.#model.editNote(this.#idToEdit, value);
+        if (!dataFromModel) return;
         this.#view.editNote(this.#idToEdit, value);
-        this.#view.hideNote();
+        this.#view.toggleEditModal();
         dataFromInput.value = '';
-
     };
 
     #hideNote = (event) => {
         const target = event.target.closest('[data-btn-close-modal]');
         if (!target) return;
-        this.#view.hideNote();
+        this.#view.toggleEditModal();
     };
+
+    #renderCurrentFilters() {
+        let arrayToRender = [];
+        if (this.#currentFilter) {
+            arrayToRender = this.#model.filter(this.#currentFilter.property, this.#currentFilter.condition);
+        } else {
+            arrayToRender = this.#model.readAll();
+        }
+        if (!this.#newFirst) {
+            arrayToRender = arrayToRender.reverse();
+        }
+        this.#updatePage(arrayToRender);
+    }
 }
 export default Controller;

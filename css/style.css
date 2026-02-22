@@ -29,7 +29,6 @@
     height: 40px;
 }
 
-
 .notesList{
     display: flex;
     flex-wrap: wrap;
@@ -109,5 +108,58 @@
 .showEditModal{
     display: block;
 }
+
+.category-color{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.category{
+    margin: 0;
+}
+
+.all-color{
+    background-color: #198754
+}
+
+.all-color:hover{
+    background-color: #157347
+}
+
+.important-color{
+    background-color: #ffc107;
+}
+
+.important-color:hover{
+    background-color: #e0a800;
+}
+
+.work-color{
+    background-color:  #6f42c1;
+}
+
+.work-color:hover{
+    background-color:  #5933a0;
+}
+
+.study-color{
+    background-color: #d63384;
+}
+
+.study-color:hover{
+    background-color: #b52a6d;
+}
+
+.personal-color{
+    background-color: #0dcaf0;
+}
+
+.personal-color:hover{
+    background-color:#0aa6c4;
+}
+
+
 
 

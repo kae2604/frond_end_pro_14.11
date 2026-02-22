@@ -14,5 +14,5 @@ const modelInstance = new Model('notes',  modelNote);
 const viewInstance = new View();
 
 const controllerInstance = new Controller(modelInstance, viewInstance);
-controllerInstance.init()
+controllerInstance.init();
 

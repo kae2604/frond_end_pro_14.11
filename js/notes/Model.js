@@ -16,7 +16,7 @@ class Model {
                 alert("You didn't choose the category");
                 return false;
             }
-            return true
+            return true;
     };
 
     readAll(){
@@ -72,7 +72,7 @@ class Model {
     toggleImportant(id){
         const allDataFromLocalStorage = this.readAll();
         const findNote = allDataFromLocalStorage.find(note => note.id === id);
-        if (!findNote) return ;
+        if (!findNote) return;
         findNote.important = !findNote.important;
         this.#updateLocalStorage(allDataFromLocalStorage);
     };
@@ -102,9 +102,9 @@ class Model {
         const allDataFromLocalStorage = this.readAll();
         const findNote = allDataFromLocalStorage.find(note => note.id === id);
         if (!findNote) return ;
-        findNote.title = dataFromInput
+        findNote.title = dataFromInput;
         this.#updateLocalStorage(allDataFromLocalStorage);
-        return findNote
+        return findNote;
     };
 }
 export default Model;
