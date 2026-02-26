@@ -14,10 +14,31 @@
 
 <body>
 
-<h1> This is my homework # </h1>
+<h1> This is my homework #35 </h1>
+
+<div class="container">
+    <div class="select-wrapper" data-select-wrapper>
+        <select name="user" id="userSelect">
+            <option value="" selected>Select user ...</option>
+        </select>
+
+        <select name="user" id="albumSelect" disabled>
+            <option value="" selected>Select an album </option>
+        </select>
+
+        <button class="loadBtn" type="button" id="loadBtn" disabled>Load photos</button>
+    </div>
+
+    <div class="status" id="status"></div>
+    <div class="photos-box" id="photos"></div>
+
+</div>
 
 
-<script src="./js/script.js"></script>
+
+
+
+<script src="js/app.js"></script>
 
 </body>
 
