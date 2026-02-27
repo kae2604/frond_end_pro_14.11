@@ -7,9 +7,12 @@ let albumId = null;
 const statusBox = document.querySelector('#status');
 const selectUsers = document.querySelector('#userSelect');
 const selectAlbums = document.querySelector('#albumSelect');
-const photoBox = document.querySelector('#photos');
+const containerForPhoto = document.querySelector('#photos');
 const loadBtn = document.querySelector('#loadBtn');
-const selectWrapper = document.querySelector('[data-select-wrapper]');
+const btnLoadMore = document.querySelector('[data-btn-Load-More ]');
+let offset = 0;
+
+
 
 function init(){
     document.addEventListener('DOMContentLoaded', () => {
@@ -53,6 +56,23 @@ function getDataByFetch(url, storeArray, textForLoading){
         })
 }
 
+const renderPhotos = function(array){
+    const limitedArray = array.slice(offset, offset + 12);
+    limitedArray.forEach(photo => {
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('photoWrapper');
+        wrapper.innerHTML = ` <img src="${photo.thumbnailUrl}" alt="photo">
+                                <p>${photo.title.length > 40 ? photo.title.slice(0, 40) + '...' : photo.title}</p>
+                                <a href="${photo.url}" target="_blank">“Open” </a>`
+        containerForPhoto.append(wrapper);
+    })
+    offset += limitedArray.length;
+    if (offset >= allPhotos.length){
+        btnLoadMore.classList.remove('visible');
+        offset = 0;
+    }
+};
+
 selectUsers.addEventListener('change', () => {
     const userId = event.target.value;
     selectAlbums.disabled = true;
@@ -65,11 +85,15 @@ selectUsers.addEventListener('change', () => {
                 selectAlbums.append(option);
             })
         })
+    containerForPhoto.innerHTML = '';
+    btnLoadMore.classList.remove('visible');
     selectAlbums.disabled = false;
 });
 
 selectAlbums.addEventListener('change', () => {
     albumId = event.target.value;
+    containerForPhoto.innerHTML = '';
+    btnLoadMore.classList.remove('visible');
     loadBtn.disabled = false;
 })
 
@@ -77,27 +101,20 @@ loadBtn.addEventListener('click', () => {
     getDataByFetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`, allPhotos, 'photos')
         .then(photosArray => {
             console.log(photosArray);
-            photosArray.forEach(photo => {
-                const wrapper = document.createElement('div');
-                wrapper.classList.add('photoWrapper');
-                wrapper.innerHTML = `
-                                <img src="${photo.thumbnailUrl}" alt="photo">
-                                <p>${photo.title.length > 40 ? photo.title.slice(0, 40) + '...' : photo.title}</p>
-                                <a href="${photo.url}" target="_blank">“Open” </a>`
-                photoBox.append(wrapper);
-            })
-
-
-
-
-
-
-            // img.src = firstPhoto.thumbnailUrl.replace(
-            //     'via.placeholder.com',
-            //     'placehold.co'
-            // );
+            renderPhotos(photosArray);
+            // btnLoadMore.classList.remove('hidden');
+            btnLoadMore.classList.add('visible');
         })
+});
+
+btnLoadMore.addEventListener('click', () => {
+    renderPhotos(allPhotos);
 })
+
+
+
+
+
 
 
 

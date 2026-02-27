@@ -45,9 +45,19 @@ select{
     border:  1px solid gray;
     padding: 30px;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.containerForPhoto{
+    width: 100%;
+    min-height: 400px;
+    display: flex;
     justify-content: start;
     flex-wrap: wrap;
     gap: 30px;
+    margin-bottom: 30px;
+
 }
 
 .photoWrapper{
@@ -55,4 +65,21 @@ select{
     border:  1px solid gray;
     padding: 25px;
 }
+
+.btnLoadMore{
+    width: 200px;
+    height: 40px;
+    padding: 10px;
+    margin: auto;
+}
+
+.hidden{
+    display: none;
+}
+
+.visible{
+    display: block;
+}
+
+
 
