@@ -1,22 +1,19 @@
 'use strict';
 
-let allUsers = [];
-let allAlbums = [];
 let allPhotos = [];
 let albumId = null;
+let offset = 0;
+
 const statusBox = document.querySelector('#status');
 const selectUsers = document.querySelector('#userSelect');
 const selectAlbums = document.querySelector('#albumSelect');
 const containerForPhoto = document.querySelector('#photos');
 const loadBtn = document.querySelector('#loadBtn');
 const btnLoadMore = document.querySelector('[data-btn-Load-More ]');
-let offset = 0;
-
-
 
 function init(){
     document.addEventListener('DOMContentLoaded', () => {
-        getDataByFetch('https://jsonplaceholder.typicode.com/users', allUsers, 'Users')
+        getDataByFetch('https://jsonplaceholder.typicode.com/users', 'Users')
             .then(usersArray => {
                 usersArray.forEach(user => {
                     const option = document.createElement('option');
@@ -30,7 +27,7 @@ function init(){
 }
 init();
 
-function getDataByFetch(url, storeArray, textForLoading){
+function getDataByFetch(url, textForLoading){
     statusBox.textContent = `Loading ${textForLoading}…`;
     return fetch(url)
         .then(response => {
@@ -38,12 +35,6 @@ function getDataByFetch(url, storeArray, textForLoading){
                 throw new Error("HTTP" + response.status)
             } else {
                 return response.json()
-            }
-        })
-        .then(usersArray => {
-            if (storeArray){
-                storeArray.splice(0, storeArray.length, ...usersArray);
-                return usersArray;
             }
         })
         .catch(error => {
@@ -69,14 +60,14 @@ const renderPhotos = function(array){
     offset += limitedArray.length;
     if (offset >= allPhotos.length){
         btnLoadMore.classList.remove('visible');
-        offset = 0;
     }
 };
 
-selectUsers.addEventListener('change', () => {
+selectUsers.addEventListener('change', (event) => {
     const userId = event.target.value;
     selectAlbums.disabled = true;
-    getDataByFetch(`https://jsonplaceholder.typicode.com/albums?userId=${userId}`, allAlbums, 'albums')
+    selectAlbums.innerHTML = '<option value="">Select an album …</option>';
+    getDataByFetch(`https://jsonplaceholder.typicode.com/albums?userId=${userId}`, 'albums')
         .then(albumsArray => {
             albumsArray.forEach(user => {
                 const option = document.createElement('option');
@@ -84,26 +75,40 @@ selectUsers.addEventListener('change', () => {
                 option.value = user.id;
                 selectAlbums.append(option);
             })
+            selectAlbums.disabled = false;
         })
+    selectAlbums.selectedIndex = 0;
     containerForPhoto.innerHTML = '';
+    allPhotos = [];
+    albumId = null;
     btnLoadMore.classList.remove('visible');
-    selectAlbums.disabled = false;
+    loadBtn.disabled = true;
+    offset = 0;
 });
 
-selectAlbums.addEventListener('change', () => {
+selectAlbums.addEventListener('change', (event) => {
     albumId = event.target.value;
+    if (!albumId){
+        loadBtn.disabled = true;
+    } else {
+        loadBtn.disabled = false;
+    }
     containerForPhoto.innerHTML = '';
     btnLoadMore.classList.remove('visible');
-    loadBtn.disabled = false;
+    offset = 0;
+    allPhotos = [];
 })
 
 loadBtn.addEventListener('click', () => {
-    getDataByFetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`, allPhotos, 'photos')
+    getDataByFetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`, 'photos')
         .then(photosArray => {
-            console.log(photosArray);
-            renderPhotos(photosArray);
-            // btnLoadMore.classList.remove('hidden');
-            btnLoadMore.classList.add('visible');
+            allPhotos = [...photosArray];
+            renderPhotos(allPhotos);
+
+            if (allPhotos.length > 12) {
+                btnLoadMore.classList.add('visible');
+            }
+            loadBtn.disabled = true;
         })
 });
 
