@@ -1,0 +1,16 @@
+*{
+    box-sizing: border-box;
+}
+
+.my-width-100{
+    width: 100px;
+}
+
+.my-width-200{
+    width: 200px;
+}
+
+.my-width-500{
+    width: 500px;
+}
+
