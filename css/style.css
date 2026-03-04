@@ -14,3 +14,12 @@
     width: 500px;
 }
 
+.inputModalBorder{
+    border-color: red !important;
+}
+
+.modal-input::placeholder{
+    color: red !important;
+    opacity: 1;
+}
+

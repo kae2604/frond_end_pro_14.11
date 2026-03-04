@@ -9,7 +9,7 @@ const userModel = {
     name: String,
     email: String,
     phone: String,
-    company: String
+    company: Object
 }
 
 

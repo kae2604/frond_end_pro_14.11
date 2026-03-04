@@ -1,59 +1,95 @@
 class Controller {
     #model = null;
     #view = null;
+    #isValid = true;
 
     constructor(model, view) {
         this.#model = model;
         this.#view = view;
+        this.#isValid = true;
     };
 
     init(){
+
         document.addEventListener('DOMContentLoaded', () => {
+            this.#view.showLoading('Table');
             this.#renderTable(this.#model.localStorage());
 
             this.#view.containerForTable.addEventListener('click', event => {
                 if (event.target.closest('[data-btn-add-user]')){
-                    this.#openModal('Add')
+                    this.#view.openModal('Add')
                 }
                 if (event.target.closest('[data-btn-edit]')){
-                    this.#openModal('Edit')
+                    this.#view.openModal('Edit')
                 }
                 if (event.target.closest('[data-modal-btn-cancel]')){
-                    this.#closeModal()
+                    this.#view.closeModal();
                 }
                 })
             this.#view.containerForTable.addEventListener('submit',this.#addUser)
-
-
 
         })
     };
 
     #renderTable(promiseFromModel){
-        promiseFromModel.then((users) => {
+        promiseFromModel
+            .then((users) => {
                this.#view.renderTable(users);
             })
+            .catch(error => {
+                this.#view.showError('Не удалось загрузить пользователей');
+                console.error(error);
+            });
     };
 
-    #openModal(action) {
-        this.#view.openModal(action)
-    }
 
-    #closeModal(){
-        this.#view.closeModal('');
-    }
-
-    #addUser = (event) => {
+    #addUser = async (event) => {
         event.preventDefault();
         const objectFromForm = {};
         const dataFromInputs = event.target.querySelectorAll('input');
+        let isValidForm = true;
         dataFromInputs.forEach((input) => {
-            objectFromForm[input.name] = input.value;
+            if (!this.#validationDataFromInput(input)){
+                isValidForm = false;
+            }
+            if (input.name === 'company'){
+                objectFromForm.company = { name: input.value};
+            } else{
+                objectFromForm[input.name] = input.value;
+            }
         });
-        this.#view.renderTableRow(objectFromForm)
-        console.log(objectFromForm);
-
+        if (isValidForm){
+            this.#view.closeModal();
+            const dataFromModel = await this.#model.addUser(objectFromForm);
+            this.#view.renderTableRow(dataFromModel);
+        }
     }
+
+    #validationDataFromInput(dataFromInput){
+        this.#isValid = true;
+        const name = dataFromInput.name;
+        const value = dataFromInput.value.trim();
+            if ((value === '')){
+                this.#view.notValidInput(dataFromInput, 'is empty')
+                this.#isValid = false;
+
+           } else {
+                this.#view.validInput(dataFromInput);
+            }
+            if ((value !== '') && name === 'email'){
+                const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                if (!isValid) {
+                    this.#view.notValidInput(dataFromInput, 'is not correct');
+                    this.#isValid = false;
+            }
+        }
+            return this.#isValid;
+    }
+
+
+
+
+
 
 
 
@@ -62,42 +98,3 @@ export default Controller;
 
 
 
-
-// function init(){
-//     document.addEventListener('DOMContentLoaded', () => {
-//             getDataByFetch('https://jsonplaceholder.typicode.com/users', 'Users')
-//                 .then(usersArray => {
-//                     usersArray.forEach(user => {
-//                         const option = document.createElement('option');
-//                         option.textContent = user.name;
-//                         option.value = user.id;
-//                         selectUsers.append(option);
-//                     })
-//                 })
-//         }
-//     )
-// }
-
-
-//
-// init();
-//
-// function getDataByFetch(url, textForLoading){
-//     statusBox.textContent = `Loading ${textForLoading}…`;
-//     return fetch(url)
-//         .then(response => {
-//             if (!response.ok){
-//                 throw new Error("HTTP" + response.status)
-//             } else {
-//                 return response.json()
-//             }
-//         })
-//         .catch(error => {
-//             statusBox.textContent =  "Error: " + error.message;
-//         })
-//         .finally(()=>{
-//             if(statusBox.textContent === `Loading ${textForLoading}…`){
-//                 statusBox.textContent = '';
-//             }
-//         })
-// }
