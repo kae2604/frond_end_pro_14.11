@@ -1,12 +1,17 @@
 class Controller {
     #model = null;
     #view = null;
-    #isValid = true;
+    #modalStatus = null;
+    #dataFromTable = null;
+    #userID = null;
 
-    constructor(model, view) {
+
+        constructor(model, view) {
         this.#model = model;
         this.#view = view;
-        this.#isValid = true;
+        this.#modalStatus = null;
+        this.#dataFromTable = null;
+        this.#userID = null;
     };
 
     init(){
@@ -17,17 +22,26 @@ class Controller {
 
             this.#view.containerForTable.addEventListener('click', event => {
                 if (event.target.closest('[data-btn-add-user]')){
-                    this.#view.openModal('Add')
+                    this.#modalStatus = 'Add';
+                    this.#view.openModal('Add');
                 }
                 if (event.target.closest('[data-btn-edit]')){
-                    this.#view.openModal('Edit')
+                    this.#modalStatus = 'Edit';
+                    this.#getDataFromTableForEditModel(event);
                 }
                 if (event.target.closest('[data-modal-btn-cancel]')){
                     this.#view.closeModal();
                 }
                 })
-            this.#view.containerForTable.addEventListener('submit',this.#addUser)
-
+            this.#view.containerForTable.addEventListener('submit', event => {
+                event.preventDefault();
+                if (this.#modalStatus === 'Add'){
+                    this.#addUser(event);
+                }
+                if (this.#modalStatus === 'Edit'){
+                    this.#editUser(event, this.#dataFromTable);
+                }
+            })
         })
     };
 
@@ -41,10 +55,41 @@ class Controller {
                 console.error(error);
             });
     };
-
-
     #addUser = async (event) => {
-        event.preventDefault();
+        const objectFromForm = this.#submitUser(event);
+        if (objectFromForm) {
+            this.#view.closeModal();
+            const dataFromModel = await this.#model.addUser(objectFromForm);
+            this.#view.renderTableRow(dataFromModel);
+        }
+    };
+
+    #getDataFromTableForEditModel(event) {
+        this.#view.openModal('Edit');
+        const row = event.target.closest('tr');
+        this.#dataFromTable = row.querySelectorAll('[data-cell]');
+        this.#userID = row.querySelector('[data-cell-id]').textContent.trim();
+        this.#dataFromTable.forEach(cell => {
+            const attributeValue = cell.dataset.cell;
+            const input = document.querySelector(`input[name="${attributeValue}"]`);
+            if (input) {
+                input.value = cell.textContent.trim();
+            }
+        })
+    };
+
+    #editUser = async (event) => {
+        const objectFromForm = this.#submitUser(event);
+        if (objectFromForm){
+            this.#view.closeModal();
+            const dataFromModel = await this.#model.editUser(objectFromForm, this.#userID );
+            // this.#view.renderTableRow(dataFromModel);
+        }
+    };
+
+
+
+    #submitUser = (event) => {
         const objectFromForm = {};
         const dataFromInputs = event.target.querySelectorAll('input');
         let isValidForm = true;
@@ -59,31 +104,28 @@ class Controller {
             }
         });
         if (isValidForm){
-            this.#view.closeModal();
-            const dataFromModel = await this.#model.addUser(objectFromForm);
-            this.#view.renderTableRow(dataFromModel);
+            return objectFromForm
         }
     }
 
     #validationDataFromInput(dataFromInput){
-        this.#isValid = true;
+        let isValid = true;
         const name = dataFromInput.name;
         const value = dataFromInput.value.trim();
             if ((value === '')){
                 this.#view.notValidInput(dataFromInput, 'is empty')
-                this.#isValid = false;
-
+                isValid = false;
            } else {
                 this.#view.validInput(dataFromInput);
             }
             if ((value !== '') && name === 'email'){
-                const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-                if (!isValid) {
+                const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                if (!isValidEmail) {
                     this.#view.notValidInput(dataFromInput, 'is not correct');
-                    this.#isValid = false;
+                    isValid = false;
             }
         }
-            return this.#isValid;
+            return isValid;
     }
 
 

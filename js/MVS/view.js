@@ -1,4 +1,5 @@
 class View{
+
     containerForTable = document.querySelector('[data-container-table]');
     allTable = document.querySelector('[data-all-table]');
     tableBody = document.querySelector('[data-table-body]');
@@ -6,6 +7,7 @@ class View{
     loadingText = document.createElement('p');
     btnAddUser = document.querySelector('[data-btn-add-user]');
     btnSubmit = document.querySelector('[data-modal-btn-submit]');
+    modal = document.querySelector('[data-modal]');
 
 
 
@@ -17,11 +19,11 @@ class View{
     createTableRow(user){
         const tableRow = document.createElement('tr');
         tableRow.innerHTML = `
-        <th scope="row" class="text-center">${user.id}</th>
-            <td>${user.name}</td>
-            <td>${user.email}</td>
-            <td>${user.phone}</td>
-            <td>${user.company.name}</td>
+        <th scope="row" class="text-center" data-cell data-cell-id="id">${user.id}</th>
+            <td data-cell="name">${user.name}</td>
+            <td data-cell="email">${user.email}</td>
+            <td data-cell="phone">${user.phone}</td>
+            <td data-cell="company">${user.company.name}</td>
             <td class="text-center">
                 <button type="button" class="btn btn-primary my-btn" data-btn-edit>
                     <i class="bi bi-pen"></i>
