@@ -1,15 +1,16 @@
-import {Component} from 'react'
 import './App.css'
-import Card from './components/Card.jsx'
+import Definitions from './components/Definitions.jsx'
 
-class App extends Component {
-    render() {
+function App (){
+        const definitions = [
+            { dt: 'one', dd: 'two', id: 1 },
+            { dt: 'another term', dd: 'another description', id: 2 },
+        ];
         return(
             <div className="App">
-                <Card />
+                <Definitions data={definitions} />
             </div>
         )
-    }
 }
 export default App;
 
