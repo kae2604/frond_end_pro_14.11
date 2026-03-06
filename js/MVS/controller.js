@@ -83,7 +83,7 @@ class Controller {
         if (objectFromForm){
             this.#view.closeModal();
             const dataFromModel = await this.#model.editUser(objectFromForm, this.#userID );
-            // this.#view.renderTableRow(dataFromModel);
+            this.#view.editUser(dataFromModel);
         }
     };
 

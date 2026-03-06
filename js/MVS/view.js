@@ -18,6 +18,7 @@ class View{
 
     createTableRow(user){
         const tableRow = document.createElement('tr');
+        tableRow.dataset.rowId = user.id;
         tableRow.innerHTML = `
         <th scope="row" class="text-center" data-cell data-cell-id="id">${user.id}</th>
             <td data-cell="name">${user.name}</td>
@@ -55,6 +56,15 @@ class View{
         this.tableBody.append(newTableRow);
     }
 
+    editUser(user){
+        const rowToEdit = document.querySelector(`[data-row-id="${user.id}"]`);
+        rowToEdit.cells[0].textContent = user.id;
+        rowToEdit.cells[1].textContent = user.name;
+        rowToEdit.cells[2].textContent = user.email;
+        rowToEdit.cells[3].textContent = user.phone;
+        rowToEdit.cells[4].textContent = user.company.name;
+    }
+
 
     showLoading(textForLoading){
         this.tableBody.classList.add('d-none');
@@ -66,10 +76,6 @@ class View{
         this.loadingText.classList.add('text-center', 'fs-2');
         this.containerForTable.append(this.loadingText);
     }
-
-    // disabledBTN(){
-    //     this.btnSubmit.setAttribute('disabled', 'disabled');
-    // }
 
     notValidInput(dataFromInput, errorText){
         dataFromInput.classList.add('inputModalBorder', 'is-invalid');
@@ -91,9 +97,15 @@ class View{
 
 
     openModal(action){
+        const modalBackground = document.createElement('div');
+        modalBackground.classList.add('modalBackground');
+        modalBackground.dataset.modalBackground = '';
+        document.body.append(modalBackground);
+
         const openModal = document.createElement('div');
-        openModal.dataset.modal = '';
+        openModal.dataset.modalOpen = '';
         openModal.classList.add(
+            'openModal',
             'position-fixed',
             'top-50',
             'start-50',
@@ -124,8 +136,10 @@ class View{
     }
 
     closeModal(){
-        const modal = document.querySelector('[data-modal]');
+        const modal = document.querySelector('[data-modal-open]');
+        const modalBackground = document.querySelector('[data-modal-background]');
         modal.remove();
+        modalBackground.remove();
     }
 
 

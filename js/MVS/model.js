@@ -57,30 +57,23 @@ class Model {
     async editUser(user, id) {
         console.log(user, id)
         try{
-            const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(user)
-            });
-            if (!response.ok) {
-                throw new Error("HTTP " + response.status);
-            }
-            const data = await response.json();
-            console.log(data)
+            // const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+            //     method: 'PUT',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(user)
+            // });
+            // if (!response.ok) {
+            //     throw new Error("HTTP " + response.status);
+            // }
+            // const data = await response.json();
+            // console.log(data)
             const indexToReplace =  this.#localStorage.findIndex(user => user.id === Number(id));
             if (indexToReplace !== -1) {
-                this.#localStorage[indexToReplace] = data;
+                this.#localStorage[indexToReplace] = user;
             }
-
-
-
-
-
-
-
-            return data;
+            return user;
         }
         catch (error){
             console.log( "Error: " + error.message);
