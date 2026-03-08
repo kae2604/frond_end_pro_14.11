@@ -21,10 +21,18 @@
 
 <div class="container" data-container-table>
 
-    <div class="text-end mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-3 ">
+        <div class="my-width-300">
+            <input type="email" class="form-control border-success" id="exampleFormControlInput1" disabled data-input-search placeholder="name@example.com">
+        </div>
+
+        <div data-loading>
+            <div class="spinner-border text-success" role="status"></div>
+            <span class=" fs-2 ms-3"> Loading table ... </span>
+        </div>
+
         <button class="btn btn-success btn-lg btn-block my-width-200" type="button" disabled data-btn-add-user>Add user</button>
     </div>
-
 
     <table class="table table-bordered table-hover" data-all-table>
         <thead class="table-secondary">
@@ -38,9 +46,7 @@
             <th scope="col">DELETE</th>
         </tr>
         </thead>
-        <tbody data-table-body>
-
-        </tbody>
+        <tbody data-table-body></tbody>
     </table>
 
 </div>

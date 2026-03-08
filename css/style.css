@@ -10,6 +10,10 @@
     width: 200px;
 }
 
+.my-width-300{
+    width: 300px;
+}
+
 .my-width-500{
     width: 500px;
 }
@@ -36,4 +40,5 @@
 .openModal{
     z-index: 101;
 }
+
 
