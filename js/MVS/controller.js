@@ -5,6 +5,10 @@ class Controller {
     #dataFromTable = null;
     #userID = null;
     #userToDelete = null;
+    #arrowIdDown = true;
+    #arrowNameDown = false;
+    #arrowEmailDown = false;
+    #arrowCompanyDown = false;
 
 
 
@@ -15,6 +19,10 @@ class Controller {
         this.#dataFromTable = null;
         this.#userID = null;
         this.#userToDelete = null;
+        this.#arrowIdDown = true;
+        this.#arrowNameDown = false;
+        this.#arrowEmailDown = false;
+        this.#arrowCompanyDown = false;
     };
 
     init(){
@@ -46,7 +54,38 @@ class Controller {
                 if (event.target.closest('[data-btn-delete]')){
                     this.#openConfirmDeleteModal(event);
                 }
+                if (event.target.closest('[data-table-title-id]')){
+                    this.#arrowIdDown = !this.#arrowIdDown;
+                    this.#arrowNameDown = false;
+                    this.#arrowEmailDown = false;
+                    this.#arrowCompanyDown = false;
 
+                    // this.#view.arrowAdd('id');
+                    // this.#turnArrow()
+                    this.#sortByAlphabet('id');
+                }
+                if (event.target.closest('[data-table-title-name]')){
+                    this.#arrowIdDown = false;
+                    this.#arrowNameDown = !this.#arrowNameDown;
+                    this.#arrowEmailDown = false;
+                    this.#arrowCompanyDown = false;
+                    // this.#view.arrowRemove();
+                    this.#sortByAlphabet('name');
+                }
+                if (event.target.closest('[data-table-title-email]')){
+                    this.#arrowIdDown = false;
+                    this.#arrowNameDown = false;
+                    this.#arrowEmailDown = !this.#arrowEmailDown;
+                    this.#arrowCompanyDown = false;
+                    this.#sortByAlphabet('email');
+                }
+                if (event.target.closest('[data-table-title-company]')){
+                    this.#arrowIdDown = false;
+                    this.#arrowNameDown = false;
+                    this.#arrowEmailDown = false;
+                    this.#arrowCompanyDown = !this.#arrowCompanyDown;
+                    this.#sortByAlphabet('company');
+                }
                 });
             document.addEventListener('click', event => {
                 if (event.target.closest('[data-btn-delete-confirm]')){
@@ -98,21 +137,83 @@ class Controller {
         }
     };
 
+    #sortByAlphabet(field){
+        const dataFromModel = [...this.#model.localStorage()];
+        let sortedData = null;
+        if (field === 'id') {
+            sortedData = dataFromModel.sort((a, b) => a.id - b.id);
+            if (!this.#arrowIdDown){
+                sortedData = sortedData.reverse();
+            }
+        }
+        if (field === 'name'){
+            sortedData = dataFromModel.sort((a, b) => a.name.localeCompare(b.name));
+            if (!this.#arrowNameDown) sortedData = sortedData.reverse()
+        }
+        if (field === 'email'){
+            sortedData = dataFromModel.sort((a, b) => a.email.localeCompare(b.email));
+            if (!this.#arrowEmailDown) sortedData = sortedData.reverse()
+        }
+        if (field === 'company') {
+            sortedData = dataFromModel.sort((a, b) => a.company.name.localeCompare(b.company.name));
+            if (!this.#arrowCompanyDown) sortedData = sortedData.reverse()
+        }
+        this.#view.renderTable(sortedData);
+        this.#view.highlightSort(field);
+        this.#view.arrowAdd(field);
+        this.#turnArrow(field);
+
+    };
+
+    #turnArrow(field){
+        if (field === 'id'){
+            if (!this.#arrowIdDown){
+                this.#view.turnArrowUp(`${field}`)
+            } else {
+                this.#view.turnArrowDown(`${field}`)
+            }
+        }
+        if (field === 'name'){
+            if (!this.#arrowNameDown){
+                this.#view.turnArrowUp(`${field}`)
+            } else {
+                this.#view.turnArrowDown(`${field}`)
+            }
+        }
+        if (field === 'email'){
+            if (!this.#arrowEmailDown){
+                this.#view.turnArrowUp(`${field}`)
+            } else {
+                this.#view.turnArrowDown(`${field}`)
+            }
+        }
+        if (field === 'company'){
+            if (!this.#arrowCompanyDown){
+                this.#view.turnArrowUp(`${field}`)
+            } else {
+                this.#view.turnArrowDown(`${field}`)
+            }
+        }
+    };
+
     #renderTable(promiseFromModel){
-        promiseFromModel
-            .then((users) => {
+        promiseFromModel.then((users) => {
                this.#view.renderTable(users);
+               this.#view.highlightSort('id');
+               this.#view.arrowAdd('id');
+
             })
             .catch((error) => {
-                    setTimeout(() => {
-                        if (error instanceof TypeError) {
-                            this.#view.serverStatus("The server is unavailable or incorrect URL")
-                        } else {
-                            this.#view.serverStatus("The server response error")
-                        }
-                    }, 1000)
+                setTimeout(() => {
+                    if (error instanceof TypeError) {
+                        this.#view.serverStatus("The server is unavailable or incorrect URL")
+                    } else {
+                        this.#view.serverStatus("The server response error")
+                    }
+            }, 1000)
         })
     };
+
     #addUser = async (event) => {
         const objectFromForm = this.#submitUser(event);
         if (objectFromForm) {
@@ -157,15 +258,12 @@ class Controller {
             try{
                 const dataFromModel = await this.#model.editUser(objectFromForm, this.#userID);
                 if (!dataFromModel){
-                    console.log("aaaa")
                     setTimeout(() => {
-                        console.log("bbbbb")
                         this.#view.serverStatus("The server response error")
                     }, 1000)
                 } else{
                     this.#view.editUser(dataFromModel);
                 }
-
             }
             catch(error){
                 setTimeout(() => {
@@ -174,8 +272,6 @@ class Controller {
             }
         }
     };
-
-
 
     #submitUser = (event) => {
         const objectFromForm = {};
@@ -243,7 +339,9 @@ class Controller {
             }
         }
             return isValid;
-    }
+    };
+
+
 
 
 

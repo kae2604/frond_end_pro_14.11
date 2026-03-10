@@ -211,7 +211,45 @@ class View{
         emptyText.classList.add('text-center', 'mt-3', 'fs-3');
         emptyText.textContent = 'There are no matches';
         this.allTable.after(emptyText);
+    };
+
+    highlightSort(field){
+        const sortedFieldBefore = document.querySelectorAll(`[data-table-title]`);
+        sortedFieldBefore.forEach(el => {
+            el.classList.remove('bg-info');
+        });
+        const sortedField = document.querySelector(`[data-table-title-${field}]`);
+        sortedField.classList.add('bg-info');
+    };
+
+    arrowAdd(field){
+        const arrowAll = document.querySelectorAll('[data-arrow]');
+        arrowAll.forEach(el => {
+            el.classList.add('d-none');
+        });
+        const arrowAdd = document.querySelector(`[data-arrow-${field}]`);
+        arrowAdd.classList.remove('d-none')
     }
+
+    turnArrowUp(field){
+        const arrow = document.querySelector(`[data-arrow-${field}]`);
+        arrow.classList.add('turnArrow')
+    };
+
+    turnArrowDown(field){
+        const arrow = document.querySelector(`[data-arrow-${field}]`);
+        arrow.classList.remove('turnArrow')
+    };
+
+
+
+    arrowRemove(field){
+        const arrow = document.querySelector(`[data-arrow-${field}]`);
+        arrow.classList.add('d-none')
+    }
+
+
+
 
 
 
