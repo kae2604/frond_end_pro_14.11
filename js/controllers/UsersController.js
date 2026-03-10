@@ -12,8 +12,6 @@ class Controller {
     #filteredData = null;
     #sortedData = null;
 
-
-
         constructor(model, view) {
         this.#model = model;
         this.#view = view;
@@ -30,12 +28,8 @@ class Controller {
     };
 
     init(){
-        // this.#view.showLoading('Table');
         document.addEventListener('DOMContentLoaded', () => {
-
             this.#renderTable(this.#model.getAll());
-
-
             this.#view.containerForTable.addEventListener('input', event => {
                 const target = event.target.closest('[data-input-search]');
                 if (!target) return;
@@ -43,8 +37,7 @@ class Controller {
                 this.#view.arrowAdd('id');
                 this.#arrowIdDown = true;
                 this.#searchUsers(event);
-
-            })
+            });
 
             this.#view.containerForTable.addEventListener('click', event => {
                 if (event.target.closest('[data-btn-add-user]')){
@@ -97,11 +90,6 @@ class Controller {
                 if (event.target.closest('[data-bs-dismiss]')){
                     this.#closeModalServerStatus();
                 }
-
-
-
-
-
             });
             this.#view.containerForTable.addEventListener('submit', event => {
                 event.preventDefault();
@@ -128,7 +116,7 @@ class Controller {
             const userCompanyEntireString = user.company.name.trim().replace(/\s+/g, '').toLowerCase();
             const cutUserCompany = userCompanyEntireString.slice(0, inputEntireStringLength);
             return (inputEntireString === cutUserName) || (inputEntireString === cutUserEmail) || (inputEntireString === cutUserCompany);
-            })
+            });
             if (suitableUsers.length === 0){
                 this.#view.showEmpty()
             } else {
@@ -144,26 +132,25 @@ class Controller {
     };
 
     #sortByAlphabet(field){
-        // const dataFromModel = [...this.#model.localStorage()];
         if (field === 'id') {
-            this.sortedData = this.#filteredData.sort((a, b) => a.id - b.id);
+            this.#sortedData = this.#filteredData.sort((a, b) => a.id - b.id);
             if (!this.#arrowIdDown){
-                this.sortedData = this.sortedData.reverse();
+                this.#sortedData = this.#sortedData.reverse();
             }
         }
         if (field === 'name'){
-            this.sortedData = this.#filteredData.sort((a, b) => a.name.localeCompare(b.name));
-            if (!this.#arrowNameDown) this.sortedData = this.sortedData.reverse()
+            this.#sortedData = this.#filteredData.sort((a, b) => a.name.localeCompare(b.name));
+            if (!this.#arrowNameDown) this.#sortedData = this.#sortedData.reverse()
         }
         if (field === 'email'){
-            this.sortedData = this.#filteredData.sort((a, b) => a.email.localeCompare(b.email));
-            if (!this.#arrowEmailDown) this.sortedData = this.sortedData.reverse()
+            this.#sortedData = this.#filteredData.sort((a, b) => a.email.localeCompare(b.email));
+            if (!this.#arrowEmailDown) this.#sortedData = this.#sortedData.reverse()
         }
         if (field === 'company') {
-            this.sortedData = this.#filteredData.sort((a, b) => a.company.name.localeCompare(b.company.name));
-            if (!this.#arrowCompanyDown) this.sortedData = this.sortedData.reverse()
+            this.#sortedData = this.#filteredData.sort((a, b) => a.company.name.localeCompare(b.company.name));
+            if (!this.#arrowCompanyDown) this.#sortedData = this.#sortedData.reverse()
         }
-        this.#view.renderTable(this.sortedData);
+        this.#view.renderTable(this.#sortedData);
         this.#view.highlightSort(field);
         this.#view.arrowAdd(field);
         this.#turnArrow(field);
@@ -214,22 +201,24 @@ class Controller {
                     } else {
                         this.#view.serverStatus("The server response error")
                     }
-            }, 1000)
-        })
+            }, 1000);
+        });
     };
 
     #addUser = async (event) => {
         const objectFromForm = this.#submitUser(event);
+        let nameToAdd = null;
         if (objectFromForm) {
             this.#view.showLoading('Adding a new user');
             this.#view.closeModal();
             try{
                 const dataFromModel = await this.#model.addUser(objectFromForm);
+                nameToAdd = dataFromModel.name;
+                this.#view.showToast('added', nameToAdd);
                 const inputValue = document.querySelector('[data-input-search]').value.trim().toLowerCase();
                 if (!inputValue) {
                     this.#view.renderTableRow(dataFromModel);
                     this.#filteredData = [...this.#model.localStorage()];
-                    // this.#view.renderTable(this.#filteredData);
                     return;
                 }
                 const allUsers = [...this.#model.localStorage()];
@@ -241,8 +230,7 @@ class Controller {
                     );
                 });
                 this.#arrowIdDown = true;
-                this.#sortByAlphabet('id')
-                // this.#view.renderTable(this.#filteredData);
+                this.#sortByAlphabet('id');
             }
             catch(error){
                 setTimeout(() => {
@@ -267,11 +255,12 @@ class Controller {
             if (input) {
                 input.value = cell.textContent.trim();
             }
-        })
+        });
     };
 
     #editUser = async (event) => {
         const objectFromForm = this.#submitUser(event);
+        const nameToEdit = objectFromForm.name;
         if (objectFromForm){
             this.#view.showLoading('Editing user');
             this.#view.closeModal();
@@ -285,9 +274,11 @@ class Controller {
                     setTimeout(() => {
                         this.#view.serverStatus("The server response error")
                     }, 1000)
+                    return;
                 } else{
                     this.#view.editUser(dataFromModel);
                 }
+                this.#view.showToast('edited', nameToEdit);
             }
             catch(error){
                 setTimeout(() => {
@@ -320,10 +311,12 @@ class Controller {
         this.#userToDelete = event.target.closest('tr');
         const userName = this.#userToDelete.querySelector('[data-cell="name"]').textContent;
         this.#view.openConfirmDeleteModal(userName);
-    }
+    };
 
     #deleteUser = async (event) => {
         this.#userID = Number(this.#userToDelete.querySelector('[data-cell="id"]').textContent);
+        const nameToDelete = this.#userToDelete.querySelector('[data-cell="name"]').textContent;
+        console.log(nameToDelete);
         this.#view.showLoading('Removing user');
         this.#view.closeDeleteModal();
         try{
@@ -333,17 +326,18 @@ class Controller {
                 this.#filteredData.splice(indexToDelete, 1);
             }
             this.#view.deleteUser(dataFromModel);
+            this.#view.showToast('delete', nameToDelete);
         }
         catch(error){
             setTimeout(() => {
                 if (error instanceof TypeError) {
-                    this.#view.serverStatus("The server is unavailable or incorrect URL")
+                    this.#view.serverStatus("The server is unavailable or incorrect URL");
                 } else {
-                    this.#view.serverStatus("The server response error")
+                    this.#view.serverStatus("The server response error");
                 }
-            }, 1000)
+            }, 1000);
         }
-    }
+    };
 
     #closeModalServerStatus(){
         this.#view.hideLoadingStatus();
@@ -354,7 +348,7 @@ class Controller {
         const name = dataFromInput.name;
         const value = dataFromInput.value;
             if ((value === '')){
-                this.#view.notValidInput(dataFromInput, 'is empty')
+                this.#view.notValidInput(dataFromInput, 'is empty');
                 isValid = false;
            } else {
                 this.#view.validInput(dataFromInput);
@@ -368,16 +362,6 @@ class Controller {
         }
             return isValid;
     };
-
-
-
-
-
-
-
-
-
-
 }
 export default Controller;
 

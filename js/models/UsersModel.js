@@ -1,13 +1,11 @@
+import API from '../config/api.js';
+
 class Model {
     #localStorage = [];
     #lastUserId = null;
 
-
-
-
-
     getAll() {
-        return fetch('https://jsonplaceholder.typicode.com/users')
+        return fetch(API.users)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("HTTP " + response.status);
@@ -16,22 +14,22 @@ class Model {
             })
             .then(users => {
                 this.#localStorage = [...users];
-                this.#lastUserId = this.#localStorage.at(-1).id
-                return this.#localStorage
+                this.#lastUserId = this.#localStorage.at(-1).id;
+                return this.#localStorage;
             })
             .catch(error => {
                 console.log( "Error: " + error.message);
                 throw error;
-                })
+                });
     };
 
     localStorage(){
         return this.#localStorage
-    }
+    };
 
     async addUser(user) {
         try{
-            const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+            const response = await fetch(API.users, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -56,7 +54,7 @@ class Model {
     async editUser(user, id) {
         const indexToReplace =  this.#localStorage.findIndex(user => user.id === Number(id));
         try{
-            const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+            const response = await fetch(`${API.users}/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -64,7 +62,6 @@ class Model {
                 body: JSON.stringify(user)
             });
             if (!response.ok) {
-                // throw new Error("HTTP " + response.status);
                 if (response.status === 404) {
                     return false;
                 }
@@ -88,7 +85,7 @@ class Model {
     async deleteUser(id) {
         const indexToDelete =  this.#localStorage.findIndex(user => user.id === Number(id));
         try{
-            const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+            const response = await fetch(`${API.users}/${id}`, {
                 method: 'DELETE',
             });
             if (!response.ok) {

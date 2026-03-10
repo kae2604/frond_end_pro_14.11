@@ -3,17 +3,11 @@ class View{
     containerForTable = document.querySelector('[data-container-table]');
     allTable = document.querySelector('[data-all-table]');
     tableBody = document.querySelector('[data-table-body]');
-    BtnModalCancel = document.querySelector('[data-modal-btn-cancel]');
-    loadingText = document.createElement('div');
     btnAddUser = document.querySelector('[data-btn-add-user]');
-    btnSubmit = document.querySelector('[data-modal-btn-submit]');
     modal = document.querySelector('[data-modal]');
     LoadingStatus = document.querySelector('[data-loading]');
     inputSearch = document.querySelector('[data-input-search]');
     modalInstance = null;
-
-
-
 
     createTableRow(user){
         const tableRow = document.createElement('tr');
@@ -34,11 +28,11 @@ class View{
                     <i class="bi bi-trash3"></i> 
                 </button>
             </td>`
-        return tableRow
+        return tableRow;
     };
 
     renderTable(users){
-        const isEmptyText = document.querySelector('[data-show-empty]')
+        const isEmptyText = document.querySelector('[data-show-empty]');
         if (isEmptyText){
             isEmptyText.remove();
         }
@@ -49,7 +43,6 @@ class View{
         });
         this.tableBody.innerHTML = '';
         this.tableBody.append(allTable);
-        // this.tableBody.classList.remove('d-none');
         this.btnAddUser.removeAttribute('disabled');
         this.inputSearch.removeAttribute('disabled');
         this.LoadingStatus.innerHTML = '';
@@ -108,7 +101,7 @@ class View{
             this.modalInstance.hide();
             this.modalInstance = null;
         }
-    }
+    };
 
     serverStatus(errorText){
         const serverStatusModal = document.createElement('div');
@@ -133,7 +126,6 @@ class View{
     };
 
     showLoading(textForLoading){
-        // this.tableBody.classList.add('d-none');
         this.LoadingStatus.innerHTML =`
             <div class="spinner-border text-success" role="status"></div>
             <span class=" fs-2 ms-3"> ${textForLoading} ... </span>
@@ -189,7 +181,7 @@ class View{
                 </div>
             </form>
         </div>`
-        this.containerForTable.append(openModal)
+        this.containerForTable.append(openModal);
     };
 
     closeModal(){
@@ -202,7 +194,7 @@ class View{
     showEmpty(){
         this.tableBody.innerHTML = '';
         this.btnAddUser.setAttribute('disabled', '');
-        const isEmptyText = document.querySelector('[data-show-empty]')
+        const isEmptyText = document.querySelector('[data-show-empty]');
         if (isEmptyText){
             isEmptyText.remove();
         }
@@ -228,32 +220,43 @@ class View{
             el.classList.add('d-none');
         });
         const arrowAdd = document.querySelector(`[data-arrow-${field}]`);
-        arrowAdd.classList.remove('d-none')
-    }
+        arrowAdd.classList.remove('d-none');
+    };
 
     turnArrowUp(field){
         const arrow = document.querySelector(`[data-arrow-${field}]`);
-        arrow.classList.add('turnArrow')
+        arrow.classList.add('turnArrow');
     };
 
     turnArrowDown(field){
         const arrow = document.querySelector(`[data-arrow-${field}]`);
-        arrow.classList.remove('turnArrow')
+        arrow.classList.remove('turnArrow');
     };
 
-
-
-    arrowRemove(field){
-        const arrow = document.querySelector(`[data-arrow-${field}]`);
-        arrow.classList.add('d-none')
-    }
-
-
-
-
-
-
-
-
+    showToast(action, name){
+        let color = null;
+        if (action === 'delete') color = 'danger';
+        if (action === 'added') color = 'success';
+        if (action === 'edited') color = 'primary';
+        const toastContainer = document.createElement('div');
+        toastContainer.classList.add('toast-container', 'position-fixed', 'bottom-0', 'end-0', 'p-3');
+        const toast = document.createElement('div');
+        toast.classList.add('toast', `bg-${color}`, 'text-white');
+        toast.id = 'liveToast';
+        toast.setAttribute('role', 'alert');
+        toast.setAttribute('aria-live', 'assertive');
+        toast.setAttribute('aria-atomic', 'true');
+        toast.innerHTML = `
+             <div class="toast-header">
+              <strong class="me-auto">Success</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+              User <em>${name}</em> was ${action}
+            </div>`
+        document.body.appendChild(toastContainer);
+        toastContainer.append(toast);
+        new bootstrap.Toast(toast).show();
+    };
 }
 export default View;

@@ -1,8 +1,8 @@
 'use strict';
 
-import Model from "./MVS/model.js";
-import Controller from "./MVS/controller.js";
-import View from "./MVS/view.js";
+import Model from "./models/UsersModel.js";
+import Controller from "./controllers/UsersController.js";
+import View from "./views/UsersView.js";
 
 const userModel = {
     id: Number,
@@ -10,8 +10,7 @@ const userModel = {
     email: String,
     phone: String,
     company: Object
-}
-
+};
 
 const modelInstance = new Model();
 const viewInstance = new View();
