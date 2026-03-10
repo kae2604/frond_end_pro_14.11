@@ -239,7 +239,7 @@ class Controller {
                     } else {
                         this.#view.serverStatus("The server response error")
                     }
-                }, 1000)
+                }, 1000);
             }
         }
     };
@@ -283,7 +283,7 @@ class Controller {
             catch(error){
                 setTimeout(() => {
                     this.#view.serverStatus("The server is unavailable or incorrect URL")
-                }, 1000)
+                }, 1000);
             }
         }
     };
