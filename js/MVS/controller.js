@@ -9,6 +9,8 @@ class Controller {
     #arrowNameDown = false;
     #arrowEmailDown = false;
     #arrowCompanyDown = false;
+    #filteredData = null;
+    #sortedData = null;
 
 
 
@@ -23,6 +25,8 @@ class Controller {
         this.#arrowNameDown = false;
         this.#arrowEmailDown = false;
         this.#arrowCompanyDown = false;
+        this.#filteredData = null;
+        this.#sortedData = null;
     };
 
     init(){
@@ -35,6 +39,9 @@ class Controller {
             this.#view.containerForTable.addEventListener('input', event => {
                 const target = event.target.closest('[data-input-search]');
                 if (!target) return;
+                this.#view.highlightSort('id');
+                this.#view.arrowAdd('id');
+                this.#arrowIdDown = true;
                 this.#searchUsers(event);
 
             })
@@ -59,9 +66,6 @@ class Controller {
                     this.#arrowNameDown = false;
                     this.#arrowEmailDown = false;
                     this.#arrowCompanyDown = false;
-
-                    // this.#view.arrowAdd('id');
-                    // this.#turnArrow()
                     this.#sortByAlphabet('id');
                 }
                 if (event.target.closest('[data-table-title-name]')){
@@ -69,7 +73,6 @@ class Controller {
                     this.#arrowNameDown = !this.#arrowNameDown;
                     this.#arrowEmailDown = false;
                     this.#arrowCompanyDown = false;
-                    // this.#view.arrowRemove();
                     this.#sortByAlphabet('name');
                 }
                 if (event.target.closest('[data-table-title-email]')){
@@ -116,9 +119,8 @@ class Controller {
         const InputData = event.target.closest('[data-input-search]');
         const inputEntireString = InputData.value.trim().replace(/\s+/g, '').toLowerCase();
         const inputEntireStringLength = inputEntireString.length;
-        const dataFromModel = this.#model.localStorage();
         if (inputEntireString){
-            const suitableUsers = dataFromModel.filter(user => {
+            const suitableUsers = this.#filteredData.filter(user => {
             const userNameEntireString = user.name.trim().replace(/\s+/g, '').toLowerCase();
             const cutUserName = userNameEntireString.slice(0, inputEntireStringLength);
             const userEmailEntireString = user.email.trim().replace(/\s+/g, '').toLowerCase();
@@ -130,39 +132,41 @@ class Controller {
             if (suitableUsers.length === 0){
                 this.#view.showEmpty()
             } else {
-                this.#view.renderTable(suitableUsers);
+                this.#filteredData = suitableUsers;
+                this.#view.renderTable(this.#filteredData);
             }
         } else {
-            this.#view.renderTable(dataFromModel);
+            this.#filteredData = [...this.#model.localStorage()];
+            // this.#view.renderTable(this.#filteredData);
+            this.#arrowIdDown = true;
+            this.#sortByAlphabet('id')
         }
     };
 
     #sortByAlphabet(field){
-        const dataFromModel = [...this.#model.localStorage()];
-        let sortedData = null;
+        // const dataFromModel = [...this.#model.localStorage()];
         if (field === 'id') {
-            sortedData = dataFromModel.sort((a, b) => a.id - b.id);
+            this.sortedData = this.#filteredData.sort((a, b) => a.id - b.id);
             if (!this.#arrowIdDown){
-                sortedData = sortedData.reverse();
+                this.sortedData = this.sortedData.reverse();
             }
         }
         if (field === 'name'){
-            sortedData = dataFromModel.sort((a, b) => a.name.localeCompare(b.name));
-            if (!this.#arrowNameDown) sortedData = sortedData.reverse()
+            this.sortedData = this.#filteredData.sort((a, b) => a.name.localeCompare(b.name));
+            if (!this.#arrowNameDown) this.sortedData = this.sortedData.reverse()
         }
         if (field === 'email'){
-            sortedData = dataFromModel.sort((a, b) => a.email.localeCompare(b.email));
-            if (!this.#arrowEmailDown) sortedData = sortedData.reverse()
+            this.sortedData = this.#filteredData.sort((a, b) => a.email.localeCompare(b.email));
+            if (!this.#arrowEmailDown) this.sortedData = this.sortedData.reverse()
         }
         if (field === 'company') {
-            sortedData = dataFromModel.sort((a, b) => a.company.name.localeCompare(b.company.name));
-            if (!this.#arrowCompanyDown) sortedData = sortedData.reverse()
+            this.sortedData = this.#filteredData.sort((a, b) => a.company.name.localeCompare(b.company.name));
+            if (!this.#arrowCompanyDown) this.sortedData = this.sortedData.reverse()
         }
-        this.#view.renderTable(sortedData);
+        this.#view.renderTable(this.sortedData);
         this.#view.highlightSort(field);
         this.#view.arrowAdd(field);
         this.#turnArrow(field);
-
     };
 
     #turnArrow(field){
@@ -198,10 +202,10 @@ class Controller {
 
     #renderTable(promiseFromModel){
         promiseFromModel.then((users) => {
+               this.#filteredData = users;
                this.#view.renderTable(users);
                this.#view.highlightSort('id');
                this.#view.arrowAdd('id');
-
             })
             .catch((error) => {
                 setTimeout(() => {
@@ -221,7 +225,24 @@ class Controller {
             this.#view.closeModal();
             try{
                 const dataFromModel = await this.#model.addUser(objectFromForm);
-                this.#view.renderTableRow(dataFromModel);
+                const inputValue = document.querySelector('[data-input-search]').value.trim().toLowerCase();
+                if (!inputValue) {
+                    this.#view.renderTableRow(dataFromModel);
+                    this.#filteredData = [...this.#model.localStorage()];
+                    // this.#view.renderTable(this.#filteredData);
+                    return;
+                }
+                const allUsers = [...this.#model.localStorage()];
+                this.#filteredData = allUsers.filter(user => {
+                    return (
+                        user.name.toLowerCase().includes(inputValue) ||
+                        user.email.toLowerCase().includes(inputValue) ||
+                        user.company.name.toLowerCase().includes(inputValue)
+                    );
+                });
+                this.#arrowIdDown = true;
+                this.#sortByAlphabet('id')
+                // this.#view.renderTable(this.#filteredData);
             }
             catch(error){
                 setTimeout(() => {
@@ -254,9 +275,12 @@ class Controller {
         if (objectFromForm){
             this.#view.showLoading('Editing user');
             this.#view.closeModal();
-
             try{
                 const dataFromModel = await this.#model.editUser(objectFromForm, this.#userID);
+                const indexToReplace =  this.#filteredData.findIndex(user => user.id === Number(this.#userID));
+                if (indexToReplace !== -1) {
+                    this.#filteredData[indexToReplace] = dataFromModel;
+                }
                 if (!dataFromModel){
                     setTimeout(() => {
                         this.#view.serverStatus("The server response error")
@@ -299,11 +323,15 @@ class Controller {
     }
 
     #deleteUser = async (event) => {
-        this.#userID = this.#userToDelete.querySelector('[data-cell="id"]').textContent;
+        this.#userID = Number(this.#userToDelete.querySelector('[data-cell="id"]').textContent);
         this.#view.showLoading('Removing user');
         this.#view.closeDeleteModal();
         try{
             const dataFromModel = await this.#model.deleteUser(this.#userID);
+            const indexToDelete =  this.#filteredData.findIndex(user => Number(user.id) === Number(this.#userID));
+            if (indexToDelete !== -1) {
+                this.#filteredData.splice(indexToDelete, 1);
+            }
             this.#view.deleteUser(dataFromModel);
         }
         catch(error){

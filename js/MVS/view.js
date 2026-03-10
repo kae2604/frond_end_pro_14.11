@@ -22,8 +22,8 @@ class View{
         <th scope="row" class="text-center" data-cell="id">${user.id}</th>
             <td data-cell="name">${user.name}</td>
             <td data-cell="email">${user.email}</td>
-            <td data-cell="phone">${user.phone}</td>
             <td data-cell="company">${user.company.name}</td>
+            <td data-cell="phone">${user.phone}</td>
             <td class="text-center">
                 <button type="button" class="btn btn-primary my-btn" data-btn-edit>
                     <i class="bi bi-pen"></i>

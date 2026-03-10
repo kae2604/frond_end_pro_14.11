@@ -66,7 +66,6 @@ class Model {
             if (!response.ok) {
                 // throw new Error("HTTP " + response.status);
                 if (response.status === 404) {
-                    console.log("cccc")
                     return false;
                 }
                 user.id = id;
@@ -82,9 +81,6 @@ class Model {
             return data;
         }
         catch (error){
-            // console.log(error)
-            // console.log( "zzzError: " + error.message);
-            console.log("zzz")
             throw error;
         }
     };

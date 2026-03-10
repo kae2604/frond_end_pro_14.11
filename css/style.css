@@ -2,6 +2,17 @@
     box-sizing: border-box;
 }
 
+
+
+.my-width-10{
+    width: 5px;
+}
+
+.my-width-50{
+    width: 50px;
+
+}
+
 .my-width-100{
     width: 100px;
 }
@@ -10,8 +21,8 @@
     width: 200px;
 }
 
-.my-width-300{
-    width: 300px;
+.my-width-310{
+    width: 310px;
 }
 
 .my-width-500{
