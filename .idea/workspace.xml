@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a3c469-e165-4d24-9781-64f44dd9d649" name="Changes" comment="add hw 37">
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/components/ToDoCard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/components/ToDoForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/Definitions.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/components/Definitions.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/main.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="c8a3c469-e165-4d24-9781-64f44dd9d649" name="Changes" comment="add hw40&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;my-react-app/src/App.jsx&#10;#&#9;my-react-app/src/components/Definitions.jsx" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -93,7 +84,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "hw39",
+    "git-widget-placeholder": "hw40",
     "last_opened_file_path": "/Users/oleksandrkriukov/IT/Hillel/frond_end_pro_14.11/css",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
