@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Definitions (props) {
+function ToDoList(props) {
     const {data} = props;
     const renderList = () => {
         return data.map(item => (
@@ -17,4 +17,4 @@ function Definitions (props) {
             </dl>
         )
 }
-export default Definitions;
+export default ToDoList;
