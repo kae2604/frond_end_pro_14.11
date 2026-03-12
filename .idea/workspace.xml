@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8a3c469-e165-4d24-9781-64f44dd9d649" name="Changes" comment="add hw40&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;my-react-app/src/App.jsx&#10;#&#9;my-react-app/src/components/Definitions.jsx">
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/Definitions.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
