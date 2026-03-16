@@ -1,15 +1,13 @@
-import {Component} from 'react'
 import './App.css'
-import Card from './components/Card.jsx'
+import PostCatalog from './components/PostCatalog.jsx'
 
-class App extends Component {
-    render() {
-        return(
-            <div className="App">
-                <Card />
-            </div>
-        )
-    }
+function App () {
+
+    return(
+        <div className="App">
+            <PostCatalog />
+        </div>
+    )
 }
 export default App;
 
