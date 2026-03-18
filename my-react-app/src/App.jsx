@@ -1,16 +1,16 @@
-import {Component} from 'react'
-import './App.css'
-import Card from './components/Card.jsx'
+import MarkdownEditor from './components/MarkdownEditor.jsx';
 
-class App extends Component {
-    render() {
-        return(
-            <div className="App">
-                <Card />
-            </div>
-        )
-    }
+function App() {
+
+    const handleContentChange = (textFromEditor) => {
+        console.log(textFromEditor)
+    };
+
+    return (
+        <div>
+            <MarkdownEditor onContentChange={handleContentChange} />
+        </div>
+    );
 }
 export default App;
-
 
