@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a3c469-e165-4d24-9781-64f44dd9d649" name="Changes" comment="add hw 37" />
+    <list default="true" id="c8a3c469-e165-4d24-9781-64f44dd9d649" name="Changes" comment="install formik">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,8 +120,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JavaScript Debug.index.html" />
       <item itemvalue="JavaScript Debug.Unnamed" />
+      <item itemvalue="JavaScript Debug.index.html" />
     </list>
   </component>
   <component name="SharedIndexes">
@@ -153,14 +157,7 @@
       <workItem from="1769075597660" duration="297000" />
       <workItem from="1769075941476" duration="36005000" />
       <workItem from="1769363551805" duration="455407000" />
-    </task>
-    <task id="LOCAL-00043" summary="add hw14">
-      <option name="closed" value="true" />
-      <created>1765033846365</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1765033846365</updated>
+      <workItem from="1774167184159" duration="137000" />
     </task>
     <task id="LOCAL-00044" summary="add hw15">
       <option name="closed" value="true" />
@@ -546,7 +543,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772723030956</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="install formik">
+      <option name="closed" value="true" />
+      <created>1773923003665</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1773923003665</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -564,7 +569,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add hw25" />
     <MESSAGE value="fix hw25" />
     <MESSAGE value="add hw26" />
     <MESSAGE value="fix main" />
@@ -589,6 +593,7 @@
     <MESSAGE value="add validation" />
     <MESSAGE value="add edit to controller and modal" />
     <MESSAGE value="add hw 37" />
-    <option name="LAST_COMMIT_MESSAGE" value="add hw 37" />
+    <MESSAGE value="install formik" />
+    <option name="LAST_COMMIT_MESSAGE" value="install formik" />
   </component>
 </project>
