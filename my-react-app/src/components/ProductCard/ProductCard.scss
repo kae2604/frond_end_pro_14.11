@@ -1,0 +1,28 @@
+*{
+  box-sizing: border-box;
+}
+
+.cardMainPhoto {
+  width: 100%;
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: 15px auto;
+}
+
+.carouselPhotos{
+  width: 100%;
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: 15px auto;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1);
+}
+
+
