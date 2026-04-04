@@ -1,16 +1,10 @@
-import {Component} from 'react'
-import './App.css'
-import Card from './components/Card.jsx'
 
-class App extends Component {
-    render() {
-        return(
-            <div className="App">
-                <Card />
-            </div>
-        )
-    }
+import AppRoutes from './routes/AppRoutes';
+
+
+const App = () => {
+    return (
+            <AppRoutes />
+    )
 }
 export default App;
-
-
