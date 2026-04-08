@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const MainLayout = ({ children }) => {
+
+
     return (
         <>
             <NavigationBar />

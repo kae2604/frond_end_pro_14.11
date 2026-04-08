@@ -4,18 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a3c469-e165-4d24-9781-64f44dd9d649" name="Changes" comment="add hw45">
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Routes/AppRoutes.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/components/NavigationBar/NavigationBar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/templates/MainLayout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/assets/react.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/Card.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/main.jsx" afterDir="false" />
+    <list default="true" id="c8a3c469-e165-4d24-9781-64f44dd9d649" name="Changes" comment="add hw46">
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Api/usersApi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/CreateUser/CreateUser.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/CreateUser/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/ErrorPage/ErrorPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/ErrorPage/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/HomePage/HomePage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/HomePage/HomePage.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/HomePage/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/HomePage/react.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UserView/UserView.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UserView/UserView.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UserView/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UsersList/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Routes/appRoutes.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/components/UserForm/UserForm.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/components/UserForm/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/components/UserForm/validationSchema.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/templates/MainLayout.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/Routes/AppRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/Routes/AppRoutes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/NavigationBar/NavigationBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/components/NavigationBar/NavigationBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/templates/MainLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/templates/MainLayout.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +38,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="JavaScript File" />
+        <option value="SCSS File" />
         <option value="JSX File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -97,8 +110,8 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "hw46",
-    "last_opened_file_path": "/Users/oleksandrkriukov/IT/Hillel/frond_end_pro_14.11/my-react-app/src/NavigationBar",
-    "list.type.of.created.stylesheet": "CSS",
+    "last_opened_file_path": "/Users/oleksandrkriukov/IT/Hillel/frond_end_pro_14.11/my-react-app/src/components",
+    "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -113,13 +126,15 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/my-react-app/src/NavigationBar" />
+      <recent name="$PROJECT_DIR$/my-react-app/src/components" />
+      <recent name="$PROJECT_DIR$/my-react-app/src/Routes" />
       <recent name="$PROJECT_DIR$/my-react-app/src" />
+      <recent name="$PROJECT_DIR$/my-react-app/src/NavigationBar" />
       <recent name="$PROJECT_DIR$/css" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/my-react-app/src/Pages" />
+      <recent name="$PROJECT_DIR$/my-react-app/src/Pages/HomePage" />
       <recent name="$PROJECT_DIR$/my-react-app/src/components" />
       <recent name="$PROJECT_DIR$/js" />
     </key>
@@ -170,14 +185,6 @@
       <workItem from="1769075941476" duration="36005000" />
       <workItem from="1769363551805" duration="455407000" />
       <workItem from="1774167184159" duration="137000" />
-    </task>
-    <task id="LOCAL-00044" summary="add hw15">
-      <option name="closed" value="true" />
-      <created>1765135080595</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1765135080595</updated>
     </task>
     <task id="LOCAL-00045" summary="add hw15">
       <option name="closed" value="true" />
@@ -563,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773923003665</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="add hw46">
+      <option name="closed" value="true" />
+      <created>1775298365783</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1775298365784</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -581,7 +596,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix hw25" />
     <MESSAGE value="add hw26" />
     <MESSAGE value="fix main" />
     <MESSAGE value="Add hw27" />
@@ -606,6 +620,61 @@
     <MESSAGE value="add edit to controller and modal" />
     <MESSAGE value="add hw 37" />
     <MESSAGE value="install formik" />
-    <option name="LAST_COMMIT_MESSAGE" value="install formik" />
+    <MESSAGE value="add hw46" />
+    <option name="LAST_COMMIT_MESSAGE" value="add hw46" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UserView/UserView.jsx</url>
+          <line>16</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UserView/UserView.jsx</url>
+          <line>17</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx</url>
+          <line>5</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx</url>
+          <line>23</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx</url>
+          <line>86</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx</url>
+          <line>87</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx</url>
+          <line>154</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx</url>
+          <line>70</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
