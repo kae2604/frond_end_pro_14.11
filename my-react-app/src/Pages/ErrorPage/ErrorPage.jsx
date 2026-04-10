@@ -4,10 +4,6 @@ import {Link} from "react-router-dom";
 
 const ErrorPage = ({errorText, errorStatus}) => {
 
-
-
-
-
     return (
         <Container className='pt-5'>
             <Card border="danger" className="userDataCard">
@@ -33,8 +29,6 @@ const ErrorPage = ({errorText, errorStatus}) => {
                     <Card.Text>
                         <h4>Please try again later...</h4>
                     </Card.Text>
-
-
                 </Card.Footer>
             </Card>
         </Container>

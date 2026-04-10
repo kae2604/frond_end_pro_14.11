@@ -1,10 +1,11 @@
-import { Container, Button, Spinner, Table } from 'react-bootstrap';
+import { Container, Button, Spinner, Row, Col } from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import './UsersList.css';
 import {useEffect, useState} from "react";
 import {fetchUsers} from '../../Api/usersApi.js';
 import {useNavigate} from "react-router-dom";
-import ErrorPage from "../ErrorPage/index.js";
+import ErrorPage from "../ErrorPage";
+import UsersTable from "../../components/UsersTable";
 
 const UsersList = ({users,
                    setUsers,
@@ -21,7 +22,7 @@ const UsersList = ({users,
 
     const limitFetchUsers = 3;
 
-    const navigate = useNavigate();
+
 
     useEffect(() => {
         if (users.length === 0) {
@@ -31,7 +32,6 @@ const UsersList = ({users,
                     setUsers(data);
                     setIsLoading(false)
                     setFinishDownload(false);
-
                 } catch (error) {
                     setFinishDownload(true)
                     setTimeout(() => {
@@ -47,7 +47,6 @@ const UsersList = ({users,
                     }, 1000);
                 }
             };
-
             loadUsers()
         } else {
             setIsLoading(false);
@@ -84,17 +83,14 @@ const UsersList = ({users,
     }
 
 
-    const some = ()=>{
-        navigate('/')
-    }
+
 
     return (
-        <Container>
+        <Container className='mb-5'>
             <div className="loadingPlace">
                 {isLoading && (
                     <div className='text-center mb-5'>
-                        <Spinner animation="border" role="status"  variant="success">
-                        </Spinner>
+                        <Spinner animation="border" role="status"  variant="success"></Spinner>
                         <span className='ms-3'>Loading...</span>
                     </div>
                 )}
@@ -106,58 +102,29 @@ const UsersList = ({users,
                 <ErrorPage errorText={errorText}
                            errorStatus={errorStatus}/>
             ) : (
-                <div>
-                    <Table bordered hover>
-                        <thead className="table-secondary">
-                        <tr>
-                            <th className='text-center'>#</th>
-                            <th className='text-center'>Name</th>
-                            <th className='text-center'>Email</th>
-                            <th className='text-center'>Phone</th>
-                            <th className='text-center'>Website</th>
-                            <th className='text-center' colSpan={3}>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {users.map((user) => (
-                            <tr key={user.id}>
-                                <td className="text-center align-middle">{user.id}</td>
-                                <td className="align-middle">{user.name}</td>
-                                <td className="align-middle">{user.email}</td>
-                                <td className="align-middle">{user.phone}</td>
-                                <td className="align-middle">{user.website}</td>
-                                <td className='text-center tdWidth align-middle'>
-                                    <Button className='buttonWidth align-middle'
-                                            variant="success"
-                                            as={Link}
-                                            to={`/user/${user.id}`}>
-                                        View
-                                    </Button>
-                                </td>
-                                <td className='text-center tdWidth align-middle'>
-                                    <Button className='buttonWidth'
-                                            variant="primary">
-                                        Edit
-                                    </Button></td>
-                                <td className='text-center tdWidth align-middle'>
-                                    <Button className='buttonWidth'
-                                            variant="danger"
-                                            onClick={some}>
-                                        Delete
-                                    </Button></td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </Table>
+                <UsersTable users={users}
+                            addMore={addMore}
+                            finishDownload={finishDownload}/>
+            )}
+            <Row>
+                <Col xs={6}>
                     {!finishDownload && (
-                        <Button className='d-block mx-auto mt-5 w-25'
-                                variant="success"
+                        <Button className='d-block  mt-5 buttonBottom'
+                                variant="info"
                                 onClick={addMore}>
                             Add more
                         </Button>
                     )}
-                </div>
-            )}
+                </Col>
+                <Col xs={6} className='d-flex justify-content-end'>
+                    <Button className='d-block mt-5 buttonBottom'
+                            variant="info"
+                            as={Link}
+                            to="/users/create-user">
+                        Create new user
+                    </Button>
+                </Col>
+            </Row>
         </Container>
     )
 }

@@ -1,11 +1,18 @@
 import { Container,Row, Col, Button, Spinner, Table } from 'react-bootstrap';
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+
 import UserForm from '../../components/UserForm'
-import {fetchAddNewUser} from "../../Api/usersApi.js";
+import {fetchEditUser} from "../../Api/usersApi.js";
 import ErrorPage from "../ErrorPage/index.js";
 
-const CreateUser = ({setUsers,IdNewUser, setIdNewUser}) => {
+
+const EditUser = ({users, setUsers}) => {
+
+    const {id} = useParams();
+    const navigate = useNavigate();
+
+
 
     const [isLoading, setIsLoading] = useState(false);
     const [isErrorHttp, setIsErrorHttp] = useState(false);
@@ -13,15 +20,33 @@ const CreateUser = ({setUsers,IdNewUser, setIdNewUser}) => {
     const [errorText, setErrorText] = useState('');
     const [errorStatus, setErrorStatus] = useState(null);
 
-    const navigate = useNavigate();
 
-    const handleSubmit = (dataFromForm) => {
+
+    const editUser = users.find(user => +user.id === +id);
+
+    // if (!editUser) {
+    //     return <div>Loading...</div>;
+    // }
+
+    const editUserData = {
+        name: editUser.name,
+        username: editUser.username,
+        email: editUser.email,
+        phone: editUser.phone,
+        website: editUser.website,
+        city: editUser.address?.city || '',
+        street: editUser.address?.street || '',
+        companyName: editUser.company?.name || ''
+    }
+
+
+
+
+
+    const handleEdit = (dataFromForm) => {
+
         const body = {
-            name: dataFromForm.name,
-            username: dataFromForm.username,
-            email: dataFromForm.email,
-            phone: dataFromForm.phone,
-            website: dataFromForm.website,
+            ...dataFromForm,
             address: {
                 city: dataFromForm.city,
                 street: dataFromForm.street
@@ -30,14 +55,17 @@ const CreateUser = ({setUsers,IdNewUser, setIdNewUser}) => {
                 name: dataFromForm.companyName
             }
         };
+
         const addNewUser = async () => {
             setIsLoading(true);
             try {
-                const data = await fetchAddNewUser(body);
-                const newUser = {...data, id: IdNewUser}
-                setIdNewUser(prevId => prevId + 1)
+                const data = await fetchEditUser(id, body);
+                const newArray = users.map((user) => {
+                    return +user.id === +data.id ? data : user
+                });
 
-                setUsers(prevState => [...prevState, newUser]);
+
+                setUsers(newArray);
                 setIsLoading(false)
                 setTimeout(() => {
                     navigate("/users-list")
@@ -59,6 +87,7 @@ const CreateUser = ({setUsers,IdNewUser, setIdNewUser}) => {
         addNewUser()
     }
 
+
     return (
         <Container className='mb-5'>
             <div className="loadingPlace">
@@ -76,15 +105,16 @@ const CreateUser = ({setUsers,IdNewUser, setIdNewUser}) => {
                 <ErrorPage errorText={errorText}
                            errorStatus={errorStatus}/>
             ) : (
-                <Row>
+                 <Row>
                     <Col md={3}></Col>
                     <Col md={6}>
-                        <UserForm onSubmit={handleSubmit}
-                                  text={'Add new user'}/>
+                        <UserForm onSubmit={handleEdit}
+                                  editValues={editUserData}
+                                  text={'Edit user'}/>
                     </Col>
                 </Row>
             )}
         </Container>
     )
 }
-export default CreateUser;
+export default EditUser;

@@ -1,9 +1,36 @@
 import * as Yup from "yup";
 
+export const initialValues = {
+    name: '',
+    username: '',
+    email: '',
+    phone: '',
+    website: '',
+    city: '',
+    street: '',
+    companyName: '',
+};
+
 export const validationSchema = Yup.object({
-    title: Yup.string()
-        .min(3, 'Must be 3 characters or more')
-        .max(100, 'Must be 15 characters or less')
+    name: Yup.string()
+        .min(3, 'Must be more than 3 characters')
         .required('Required'),
-    body: Yup.string().min(3, 'Must be 3 characters or more').required('Required'),
+    username: Yup.string()
+        .min(3, 'Must be more than 3 characters')
+        .required('Required'),
+    email: Yup.string()
+        .email('Invalid email')
+        .min(5, 'Too short')
+        .max(50, 'Too long')
+        .required('Required'),
+    phone: Yup.string()
+        .required('Phone is required'),
+    website: Yup.string()
+        .required('Required'),
+    city: Yup.string()
+        .required('Required'),
+    street: Yup.string()
+        .required('Required'),
+    companyName: Yup.string()
+        .required('Required')
 });

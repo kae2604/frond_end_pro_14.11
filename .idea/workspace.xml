@@ -5,29 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8a3c469-e165-4d24-9781-64f44dd9d649" name="Changes" comment="add hw46">
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Api/usersApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/CreateUser/CreateUser.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/CreateUser/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/ErrorPage/ErrorPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/ErrorPage/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/HomePage/HomePage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/HomePage/HomePage.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/HomePage/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/HomePage/react.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UserView/UserView.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UserView/UserView.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UserView/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UsersList/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/Routes/appRoutes.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/components/UserForm/UserForm.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/components/UserForm/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/components/UserForm/validationSchema.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-react-app/src/templates/MainLayout.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/EditUser/EditUser.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/Pages/EditUser/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/components/UsersTable/UsersTable.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/components/UsersTable/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/Api/usersApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/Api/usersApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/Pages/CreateUser/CreateUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/Pages/CreateUser/CreateUser.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/Pages/ErrorPage/ErrorPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/Pages/ErrorPage/ErrorPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/Pages/UserView/UserView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UserView/UserView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-react-app/src/Routes/AppRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/Routes/AppRoutes.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-react-app/src/components/NavigationBar/NavigationBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/components/NavigationBar/NavigationBar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/templates/MainLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/templates/MainLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/UserForm/UserForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/components/UserForm/UserForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/UserForm/validationSchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/components/UserForm/validationSchema.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +65,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="hw45" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -110,7 +102,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "hw46",
-    "last_opened_file_path": "/Users/oleksandrkriukov/IT/Hillel/frond_end_pro_14.11/my-react-app/src/components",
+    "last_opened_file_path": "/Users/oleksandrkriukov/IT/Hillel/frond_end_pro_14.11/my-react-app/src/Pages",
     "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
@@ -126,13 +118,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/my-react-app/src/Pages" />
       <recent name="$PROJECT_DIR$/my-react-app/src/components" />
       <recent name="$PROJECT_DIR$/my-react-app/src/Routes" />
       <recent name="$PROJECT_DIR$/my-react-app/src" />
       <recent name="$PROJECT_DIR$/my-react-app/src/NavigationBar" />
-      <recent name="$PROJECT_DIR$/css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/my-react-app/src/components/UsersTable" />
       <recent name="$PROJECT_DIR$/my-react-app/src/Pages" />
       <recent name="$PROJECT_DIR$/my-react-app/src/Pages/HomePage" />
       <recent name="$PROJECT_DIR$/my-react-app/src/components" />
@@ -628,51 +621,30 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UserView/UserView.jsx</url>
-          <line>16</line>
-          <properties lambdaOrdinal="-1" />
+          <line>23</line>
           <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UserView/UserView.jsx</url>
-          <line>17</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx</url>
           <line>5</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx</url>
-          <line>23</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx</url>
-          <line>86</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx</url>
-          <line>87</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx</url>
-          <line>154</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/UsersList/UsersList.jsx</url>
-          <line>70</line>
-          <properties lambdaOrdinal="-1" />
+          <line>69</line>
           <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/EditUser/EditUser.jsx</url>
+          <line>67</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/my-react-app/src/Pages/EditUser/EditUser.jsx</url>
+          <line>31</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
