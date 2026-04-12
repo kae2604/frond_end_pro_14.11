@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const MainLayout = ({ children }) => {
-
 
     return (
         <>
@@ -18,9 +16,7 @@ const MainLayout = ({ children }) => {
         </>
     );
 };
-
 MainLayout.propTypes = {
     children: PropTypes.node.isRequired,
 };
-
 export default MainLayout;

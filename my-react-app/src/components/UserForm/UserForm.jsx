@@ -1,7 +1,8 @@
 import {Button, Form, Card} from "react-bootstrap";
 import {useFormik} from "formik";
-import {initialValues, validationSchema} from "./validationSchema.js";
+import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
+import {initialValues, validationSchema} from "./validationSchema.js";
 
 const UserForm = ({onSubmit, editValues,text}) => {
 
@@ -155,5 +156,19 @@ const UserForm = ({onSubmit, editValues,text}) => {
             </Form>
         </Card>
     );
+};
+UserForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    editValues: PropTypes.shape({
+        name: PropTypes.string,
+        username: PropTypes.string,
+        email: PropTypes.string,
+        phone: PropTypes.string,
+        website: PropTypes.string,
+        city: PropTypes.string,
+        street: PropTypes.string,
+        companyName: PropTypes.string,
+    }),
+    text: PropTypes.string.isRequired,
 };
 export default UserForm;

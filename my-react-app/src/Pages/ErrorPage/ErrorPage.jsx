@@ -1,6 +1,5 @@
 import {Card, Container} from "react-bootstrap";
-import {Link} from "react-router-dom";
-
+import PropTypes from 'prop-types';
 
 const ErrorPage = ({errorText, errorStatus}) => {
 
@@ -9,7 +8,7 @@ const ErrorPage = ({errorText, errorStatus}) => {
             <Card border="danger" className="userDataCard">
                 <Card.Header>
                     <Card.Title className="text-center text-danger">
-                        <h1>ERROR!!!</h1>
+                        ERROR!!!
                     </Card.Title>
                 </Card.Header>
                 <Card.Body>
@@ -33,5 +32,9 @@ const ErrorPage = ({errorText, errorStatus}) => {
             </Card>
         </Container>
     )
-}
+};
+ErrorPage.propTypes = {
+    errorText: PropTypes.string.isRequired,
+    errorStatus: PropTypes.string,
+};
 export default ErrorPage;

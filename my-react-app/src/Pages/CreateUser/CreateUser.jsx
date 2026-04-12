@@ -1,9 +1,10 @@
-import { Container,Row, Col, Button, Spinner, Table } from 'react-bootstrap';
+import { Container,Row, Col, Spinner} from 'react-bootstrap';
 import {useState} from "react";
+import PropTypes from "prop-types";
 import {useNavigate} from "react-router-dom";
 import UserForm from '../../components/UserForm'
 import {fetchAddNewUser} from "../../Api/usersApi.js";
-import ErrorPage from "../ErrorPage/index.js";
+import ErrorPage from "../ErrorPage";
 
 const CreateUser = ({setUsers,IdNewUser, setIdNewUser}) => {
 
@@ -38,10 +39,12 @@ const CreateUser = ({setUsers,IdNewUser, setIdNewUser}) => {
                 setIdNewUser(prevId => prevId + 1)
 
                 setUsers(prevState => [...prevState, newUser]);
-                setIsLoading(false)
-                setTimeout(() => {
-                    navigate("/users-list")
-                }, 300)
+                navigate("/users-list", {
+                    state: {
+                        toast: "user_created",
+                        userName: data.name
+                    }
+                });
             } catch (error) {
                 setTimeout(() => {
                     if (error.type === 'http') {
@@ -52,8 +55,10 @@ const CreateUser = ({setUsers,IdNewUser, setIdNewUser}) => {
                         setErrorText("Server not found")
                         setIsErrorNetwork(true);
                     }
-                    setIsLoading(false);
                 }, 1000);
+            }
+            finally {
+                setIsLoading(false)
             }
         };
         addNewUser()
@@ -86,5 +91,10 @@ const CreateUser = ({setUsers,IdNewUser, setIdNewUser}) => {
             )}
         </Container>
     )
-}
+};
+CreateUser.propTypes = {
+    setUsers: PropTypes.func.isRequired,
+    IdNewUser: PropTypes.number.isRequired,
+    setIdNewUser: PropTypes.func.isRequired,
+};
 export default CreateUser;

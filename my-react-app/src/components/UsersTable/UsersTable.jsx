@@ -1,7 +1,8 @@
 import {Button, Table} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
-const UsersTable = ({users, some}) => {
+const UsersTable = ({users}) => {
     return (
         <div>
             <Table bordered hover>
@@ -41,7 +42,8 @@ const UsersTable = ({users, some}) => {
                         <td className='text-center tdWidth align-middle'>
                             <Button className='buttonWidth'
                                     variant="danger"
-                                    onClick={some}>
+                                    as={Link}
+                                    to={`/users/delete-user/${user.id}`}>
                                 Delete
                             </Button></td>
                     </tr>
@@ -50,5 +52,16 @@ const UsersTable = ({users, some}) => {
             </Table>
         </div>
     )
-}
+};
+UsersTable.propTypes = {
+    users: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+            name: PropTypes.string.isRequired,
+            email: PropTypes.string.isRequired,
+            phone: PropTypes.string,
+            website: PropTypes.string,
+        })
+    ).isRequired,
+};
 export default UsersTable;

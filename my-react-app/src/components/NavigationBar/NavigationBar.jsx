@@ -25,5 +25,4 @@ const NavigationBar = () => {
         </Navbar>
     );
 };
-
 export default NavigationBar;

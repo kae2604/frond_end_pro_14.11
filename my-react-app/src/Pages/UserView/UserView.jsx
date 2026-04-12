@@ -1,9 +1,9 @@
 import { Container, Spinner, Card } from 'react-bootstrap';
-import './UserView.css';
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import './UserView.css';
 import {fetchUser} from "../../Api/usersApi.js";
-import ErrorPage from "../ErrorPage/index.js";
+import ErrorPage from "../ErrorPage";
 
 const UserView = () => {
 
@@ -20,7 +20,6 @@ const UserView = () => {
             try {
                 const data = await fetchUser(id);
                 setUser(data);
-                setIsLoading(false)
             } catch (error) {
                 setTimeout(() => {
                     if (error.type === 'http') {
@@ -31,8 +30,10 @@ const UserView = () => {
                         setErrorText("Server not found")
                         setIsErrorNetwork(true);
                     }
-                    setIsLoading(false);
                 }, 1000);
+            }
+            finally {
+                setIsLoading(false);
             }
         }
         loadUser()

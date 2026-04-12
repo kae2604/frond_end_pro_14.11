@@ -1,47 +1,37 @@
-import { Container,Row, Col, Button, Spinner, Table } from 'react-bootstrap';
+import { Container,Row, Col, Spinner} from 'react-bootstrap';
 import {useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-
+import PropTypes from "prop-types";
 import UserForm from '../../components/UserForm'
 import {fetchEditUser} from "../../Api/usersApi.js";
 import ErrorPage from "../ErrorPage/index.js";
-
 
 const EditUser = ({users, setUsers}) => {
 
     const {id} = useParams();
     const navigate = useNavigate();
-
-
-
     const [isLoading, setIsLoading] = useState(false);
     const [isErrorHttp, setIsErrorHttp] = useState(false);
     const [isErrorNetwork, setIsErrorNetwork] = useState(false);
     const [errorText, setErrorText] = useState('');
     const [errorStatus, setErrorStatus] = useState(null);
 
+    const selectedUser = users.find(user => +user.id === +id);
 
-
-    const editUser = users.find(user => +user.id === +id);
-
-    // if (!editUser) {
-    //     return <div>Loading...</div>;
-    // }
-
-    const editUserData = {
-        name: editUser.name,
-        username: editUser.username,
-        email: editUser.email,
-        phone: editUser.phone,
-        website: editUser.website,
-        city: editUser.address?.city || '',
-        street: editUser.address?.street || '',
-        companyName: editUser.company?.name || ''
+    if (!selectedUser) {
+        return null;
     }
 
-
-
-
+    const editUserData = {
+        name: selectedUser.name,
+        username: selectedUser.username,
+        email: selectedUser.email,
+        phone: selectedUser.phone,
+        website: selectedUser.website,
+        city: selectedUser.address?.city || '',
+        street: selectedUser.address?.street || '',
+        companyName: selectedUser.company?.name || ''
+    }
 
     const handleEdit = (dataFromForm) => {
 
@@ -56,20 +46,20 @@ const EditUser = ({users, setUsers}) => {
             }
         };
 
-        const addNewUser = async () => {
+        const updateUser = async () => {
             setIsLoading(true);
             try {
                 const data = await fetchEditUser(id, body);
                 const newArray = users.map((user) => {
                     return +user.id === +data.id ? data : user
                 });
-
-
                 setUsers(newArray);
-                setIsLoading(false)
-                setTimeout(() => {
-                    navigate("/users-list")
-                }, 300)
+                navigate("/users-list", {
+                    state: {
+                        toast: "user_edited",
+                        userName: data.name
+                    }
+                });
             } catch (error) {
                 setTimeout(() => {
                     if (error.type === 'http') {
@@ -80,13 +70,14 @@ const EditUser = ({users, setUsers}) => {
                         setErrorText("Server not found")
                         setIsErrorNetwork(true);
                     }
-                    setIsLoading(false);
                 }, 1000);
             }
+            finally {
+                setIsLoading(false);
+            }
         };
-        addNewUser()
+        updateUser()
     }
-
 
     return (
         <Container className='mb-5'>
@@ -116,5 +107,25 @@ const EditUser = ({users, setUsers}) => {
             )}
         </Container>
     )
-}
+};
+EditUser.propTypes = {
+    users: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+            name: PropTypes.string.isRequired,
+            username: PropTypes.string,
+            email: PropTypes.string,
+            phone: PropTypes.string,
+            website: PropTypes.string,
+            address: PropTypes.shape({
+                city: PropTypes.string,
+                street: PropTypes.string,
+            }),
+            company: PropTypes.shape({
+                name: PropTypes.string,
+            }),
+        })
+    ).isRequired,
+    setUsers: PropTypes.func.isRequired,
+};
 export default EditUser;

@@ -1,71 +1,47 @@
-
 const BASE_URL = "https://jsonplaceholder.typicode.com";
 
-export const fetchUsers = async (start, limit) => {
+const handleResponse = async (url, options={}) => {
     try{
-        let users = await fetch(`${BASE_URL}/users?_start=${start}&_limit=${limit}`);
-        if (!users.ok) {
-            throw { type: 'http', status: users.status }
+        const response = await fetch(url, options);
+        if (!response.ok) {
+            throw { type: 'http', status: response.status }
         }
-        users = await users.json();
-        return users;
+        const data = await response.json();
+        return data;
     } catch (error) {
         if (error.type) throw error;
         throw { type: 'network', message: error.message };
     }
-}
+};
+
+export const fetchUsers = async (start, limit) => {
+    return handleResponse(`${BASE_URL}/users?_start=${start}&_limit=${limit}`)
+};
 
 export const fetchUser = async (id) => {
-    try{
-        let user = await fetch(`${BASE_URL}/users/${id}`);
-        if (!user.ok) {
-            throw { type: 'http', status: user.status }
-        }
-        user = await user.json();
-        return user;
-    }catch (error) {
-        if (error.type) throw error;
-        throw { type: 'network', message: error.message };
-    }
-}
-
-
-
+    return handleResponse(`${BASE_URL}/users/${id}`)
+};
 
 export const fetchAddNewUser = async ( body) => {
-    try{
-        let response = await fetch(`${BASE_URL}/users`, {
-            method: 'POST',
-            body: JSON.stringify(body),
-            headers: {'Content-Type': 'application/json'},
-        })
-        if (!response.ok) {
-            throw { type: 'http', status: response.status }
-        }
-        response = await response.json();
-        return response;
-    }catch (error) {
-        if (error.type) throw error;
-        throw { type: 'network', message: error.message };
-    }
-}
+    return handleResponse(`${BASE_URL}/users`, {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {'Content-Type': 'application/json'},
+    })
+};
 
 export const fetchEditUser = async (id, body) => {
-    try{
-        let response = await fetch(`${BASE_URL}/users/${id}`, {
-            method: 'PUT',
-            body: JSON.stringify(body),
-            headers: {'Content-Type': 'application/json'},
-        })
-        if (!response.ok) {
-            throw { type: 'http', status: response.status }
-        }
-        response = await response.json();
-        return response;
-    }catch (error) {
-        if (error.type) throw error;
-        throw { type: 'network', message: error.message };
-    }
+    return handleResponse(`${BASE_URL}/users/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(body),
+        headers: {'Content-Type': 'application/json'},
+    })
+};
+
+export const fetchDeleteUser = async (id) => {
+    return handleResponse(`${BASE_URL}/users/${id}`, {
+        method: 'DELETE',
+    })
 }
 
 

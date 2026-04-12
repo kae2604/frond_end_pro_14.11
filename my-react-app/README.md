@@ -107,7 +107,7 @@ PropTypes
 Наприклад:
 UserCard
 UserTable
-UserForm
+Toast
 PageHeader
 ButtonGroup
 AlertMessage
@@ -128,7 +128,7 @@ UserDetailsPage
 CreateUserPage
 EditUserPage
 NotFoundPage
-UserForm
+Toast
 UsersTable або UsersCards
 Loader
 ErrorMessage
@@ -160,7 +160,7 @@ api/
 usersApi.js
 components/
 AppNavbar.jsx
-UserForm.jsx
+ConfirmToast.jsx
 UsersTable.jsx
 Loader.jsx
 ErrorMessage.jsx
